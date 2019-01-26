@@ -36,6 +36,8 @@ under different conditions.
 ### Development Tools and Environment
 - Visual Studio 2017 Community Edition
 - Angular 7 with Material Design UI
+  - Angular CLI (v7.2.3)
+  - NodeJs (v10.15.0)
 - .NET Core 2.2
 - Microsoft.EntityFrameworkCore
 - SQLite Database
