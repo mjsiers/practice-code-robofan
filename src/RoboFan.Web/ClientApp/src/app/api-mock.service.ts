@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { RoboFan } from './robofan';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
@@ -10,5 +11,17 @@ import 'rxjs/add/observable/throw';
 })
 export class ApiMockService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
+
+  getFansAll() : Observable<RoboFan> {
+    return this.http
+      .get('assets/robofans.json')
+      .map((res: Response) => new RoboFan(res))
+      .catch(this.handleError);
+  }
+
+  private handleError (error: Response | any) {
+    console.error('ApiMockService::handleError', error);
+    return Observable.throw(error);
+  }
 }

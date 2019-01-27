@@ -3,6 +3,8 @@ export class RoboFan {
   firstname: string;
   lastname: string;
   address: string;
+  city: string;
+  state: string;
   birthdate: Date;
   age: number;
   fanimageurl: string;
@@ -10,4 +12,8 @@ export class RoboFan {
   teamimageurl: string;
   posteams: string[] = [];
   negteams: string[] = [];
+
+  constructor(values: Object = {}) {
+    Object.assign(this, values);
+  }
 }
