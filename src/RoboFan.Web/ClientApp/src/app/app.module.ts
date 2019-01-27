@@ -8,6 +8,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
+import { ApiService } from './api.service';
+import { ApiMockService } from './api-mock.service';
 import { HomeComponent } from './home/home.component';
 import { SettingsComponent } from './settings/settings.component';
 
@@ -32,7 +34,7 @@ const routes: Routes = [
     AppMaterialModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [],
+  providers: [ApiService, ApiMockService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
