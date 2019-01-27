@@ -1,0 +1,25 @@
+team, conference
+Colorado Rapids, Western
+FC Dallas, Western
+Houston Dynamo, Western
+LA Galaxy, Western
+Los Angeles FC, Western
+Minnesota United, Western
+Portland Timbers, Western
+Real Salt Lake, Western
+San Jose Earthquakes, Western
+Seattle Sounders FC, Western
+Sporting Kansas City, Western
+Vancouver Whitecaps FC, Western
+Atlanta United FC, Eastern
+Chicago Fire, Eastern
+FC Cincinnati, Eastern
+Columbus Crew SC, Eastern
+D.C. United, Eastern
+Montreal Impact, Eastern
+New England Revolution, Eastern
+New York City FC, Eastern
+New York Red Bulls, Eastern
+Orlando City SC, Eastern
+Philadelphia Union, Eastern
+Toronto FC, Eastern
