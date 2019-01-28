@@ -5,7 +5,7 @@
 - [X] Create empty placeholder projects
 
 ### Data Management
-- [ ] Define the initial set of data entities 
+- [X] Define the initial set of data entities 
 - [ ] Add code to be able to generate fake/mock data for the data entities
 - [ ] Generate some sample JSON files for initial UI development
 - [ ] Add code to seed the database tables with random data
