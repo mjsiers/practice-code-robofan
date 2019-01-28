@@ -1,8 +1,9 @@
-ul {
-  list-style-type: none;
+.fancard {
+  width: 80%;
+  margin: 5px auto;
 }
 
-.form-div{
+.card-div{
   display: flex;
   justify-content: center;
   align-items: center;

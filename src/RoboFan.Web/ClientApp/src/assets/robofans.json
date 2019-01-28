@@ -14,7 +14,7 @@
 	  "teamname": "Minnesota United",
 	  "teamimageurl": "",
 	  "posteams": ["D.C. United"],
-	  "negteams": ["Chicago Fire", "LA Galaxy", "Atlanta United FC"],
+	  "negteams": ["Chicago Fire", "LA Galaxy", "Atlanta United FC"]
 	},
   {
     "id": 2,
@@ -30,7 +30,7 @@
 	  "teamname": "Real Salt Lake",
 	  "teamimageurl": "",
 	  "posteams": ["Toronto FC", "Montreal Impact"],
-	  "negteams": ["Colorado Rapids", "Seattle Sounders FC", "Portland Timbers"],
+	  "negteams": ["Colorado Rapids", "Seattle Sounders FC", "Portland Timbers"]
 	}
   ]
 }

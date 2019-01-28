@@ -7,7 +7,11 @@ import { Observable } from 'rxjs/Observable';
 @Injectable({
   providedIn: 'root'
 })
-export class RobofanDataService {
+export class RoboFanDataService {
 
   constructor(private api: ApiMockService) { }
+
+  getFansAll() : Observable<RoboFan[]> {
+    return this.api.getFansAll();
+  }
 }

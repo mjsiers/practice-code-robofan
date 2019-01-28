@@ -10,8 +10,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { ApiService } from './api.service';
 import { ApiMockService } from './api-mock.service';
+import { RoboFanDataService } from './robofan-data.service';
 import { HomeComponent } from './home/home.component';
 import { SettingsComponent } from './settings/settings.component';
+import { FancardComponent } from './fancard/fancard.component';
 
 
 const routes: Routes = [
@@ -23,10 +25,12 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     HomeComponent,
-    SettingsComponent
+    SettingsComponent,
+    FancardComponent
   ],
   imports: [
-    BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
+    //BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
+    BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
     FormsModule,
@@ -34,7 +38,7 @@ const routes: Routes = [
     AppMaterialModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [ApiService, ApiMockService],
+  providers: [ApiService, ApiMockService, RoboFanDataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
