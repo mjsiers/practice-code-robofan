@@ -1,12 +1,14 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Collections.Generic;
 using System.Text;
 
 namespace RoboFan.Domain.Entities
 {
-  public class RobotFan
+  public class RoboFan
   {
+    [Key]
     public int Id { get; set; }
     public Guid GuidId { get; set; }
     public string FirstName { get; set; }
@@ -18,10 +20,8 @@ namespace RoboFan.Domain.Entities
     public DateTime? BirthDate { get; set; }
     public byte[] Image { get; set; }
 
-    [ForeignKey("PrimaryTeam")]
+    [ForeignKey("PrimaryTeamId")]
     public LeagueTeam PrimaryTeam { get; set; }
-    public int PrimaryTeamId { get; set; }
-
-    public ICollection<RobotFanTeamRanking> FanRankings { get; set; }
+    public ICollection<RoboFanTeamRanking> FanRankings { get; set; }
   }
 }

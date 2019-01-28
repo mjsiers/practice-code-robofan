@@ -5,13 +5,16 @@ VisualStudioVersion = 15.0.28307.271
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RoboFan.Web", "RoboFan.Web\RoboFan.Web.csproj", "{CD4DFB76-EB1F-4DFD-B3CB-7327C4A9FB76}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoboFan.Domain", "RoboFan.Domain\RoboFan.Domain.csproj", "{AC6F7510-42A7-4946-852B-921C8A68B950}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RoboFan.Domain", "RoboFan.Domain\RoboFan.Domain.csproj", "{AC6F7510-42A7-4946-852B-921C8A68B950}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoboFan.Data.EFCore", "RoboFan.Data.EFCore\RoboFan.Data.EFCore.csproj", "{E37B2FA3-2A46-4240-B01C-D4E0EB8B1CED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RoboFan.Data.EFCore", "RoboFan.Data.EFCore\RoboFan.Data.EFCore.csproj", "{E37B2FA3-2A46-4240-B01C-D4E0EB8B1CED}"
+	ProjectSection(ProjectDependencies) = postProject
+		{AC6F7510-42A7-4946-852B-921C8A68B950} = {AC6F7510-42A7-4946-852B-921C8A68B950}
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoboFan.Data.Mock", "RoboFan.Data.Mock\RoboFan.Data.Mock.csproj", "{E31390BB-984A-46D9-A095-3FD897622C66}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RoboFan.Data.Mock", "RoboFan.Data.Mock\RoboFan.Data.Mock.csproj", "{E31390BB-984A-46D9-A095-3FD897622C66}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoboFan.UnitTest", "RoboFan.UnitTest\RoboFan.UnitTest.csproj", "{B26D1151-683F-4EDB-B3EE-03752F96D953}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RoboFan.UnitTest", "RoboFan.UnitTest\RoboFan.UnitTest.csproj", "{B26D1151-683F-4EDB-B3EE-03752F96D953}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

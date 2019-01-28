@@ -6,10 +6,15 @@
 
 ### Data Management
 - [X] Define the initial set of data entities 
-- [ ] Add code to be able to generate fake/mock data for the data entities
-- [ ] Generate some sample JSON files for initial UI development
+- [X] Define data transfer objects for the web application
+- [X] Add in required dependencies for EFCore and SQLite
+- [X] Implement required classes for data access layer
+- [ ] Add code and unit tests to be able to generate fake/mock data for the data entities
+- [ ] Write code and unit tests for fetching images and saving/retrieving from database
+- [ ] Generate a larger sample JSON files for client based UI development
+- [ ] Add in server logging framework
 - [ ] Add code to seed the database tables with random data
-- [ ] Implement REST API controller
+- [ ] Implement REST API controllers
 - [ ] Add in middleware to simulate slower response times
 
 ### Angular Frontend
@@ -19,4 +24,7 @@
 - [X] Implement stub data services which provide data from JSON files
 - [X] Implement UI Components using these stub data services
 - [ ] Add in support for scrolling/paging the list of cards
+- [ ] Update application to use data from actual web service
 - [ ] Remove mocked data and image assets from the client app directory
+- [ ] Add settings page to generate more random records
+- [ ] Add settings page to adjust the web server response delay times
