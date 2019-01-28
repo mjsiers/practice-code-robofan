@@ -41,6 +41,7 @@ under different conditions.
 - .NET Core 2.2
 - Microsoft.EntityFrameworkCore
 - SQLite Database
+  - DB Browser for SQLite Utility
 - xUnit Testing Framework
 - GitHub Source Code Repository
   - **master** branch will hold tagged intermediate releases along with final release

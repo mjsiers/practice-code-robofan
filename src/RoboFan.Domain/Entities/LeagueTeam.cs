@@ -18,5 +18,17 @@ namespace RoboFan.Domain.Entities
 
     public ICollection<RoboFan> RobotFans { get; set; }
     public ICollection<RoboFanTeamRanking> FanRankings { get; set; }
+
+    public LeagueTeam()
+    {
+    }
+
+    public LeagueTeam(int id, string name, string conference, string imageurl)
+    {
+      this.Id = id;
+      this.Name = name;
+      this.Conference = conference;
+      this.ImageUrl = imageurl;
+    }
   }
 }

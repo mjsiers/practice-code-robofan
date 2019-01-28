@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RoboFan.Data.EFCore;
 
 namespace RoboFan.Data.EFCore.Migrations
 {
     [DbContext(typeof(RoboFanContext))]
-    partial class RoboFanContextModelSnapshot : ModelSnapshot
+    [Migration("20190128194644_SeedLeagueTeams")]
+    partial class SeedLeagueTeams
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
