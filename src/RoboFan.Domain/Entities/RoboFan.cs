@@ -20,8 +20,8 @@ namespace RoboFan.Domain.Entities
     public DateTime? BirthDate { get; set; }
     public byte[] Image { get; set; }
 
-    [ForeignKey("PrimaryTeamId")]
-    public LeagueTeam PrimaryTeam { get; set; }
-    public ICollection<RoboFanTeamRanking> FanRankings { get; set; }
+    public int? PrimaryTeamId { get; set; }
+    public virtual LeagueTeam PrimaryTeam { get; set; }
+    public virtual ICollection<RoboFanTeamRanking> FanRankings { get; set; }
   }
 }
