@@ -29,8 +29,8 @@ const routes: Routes = [
     FancardComponent
   ],
   imports: [
-    //BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
-    BrowserModule,
+    //BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     BrowserAnimationsModule,
     HttpClientModule,
     FormsModule,
