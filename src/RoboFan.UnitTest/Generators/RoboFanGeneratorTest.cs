@@ -7,15 +7,15 @@ namespace RoboFan.UnitTest.Generators
   public class RoboFanGeneratorTest
   {
     [Fact]
-    public void VerifyGeneratorRoboFan()
+    public void VerifyRoboFanGenerator()
     {
       var listfans = RoboFanGenerator.Generate(1);
       Assert.NotNull(listfans);
       Assert.Single(listfans);
 
-      //Guid guidResult;
+
       var fan = listfans[0];
-      //Assert.True(Guid.TryParse(fan.GuidId.ToString(), out guidResult));
+
       Assert.NotEmpty(fan.FirstName);
       Assert.NotEmpty(fan.LastName);
       Assert.NotEmpty(fan.Address);
