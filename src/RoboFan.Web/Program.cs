@@ -16,11 +16,13 @@ namespace RoboFan.Web
   {
     public static void Main(string[] args)
     {
+      string logtemplate = "[{Timestamp:HH:mm:ss} {Level:u3}] {SourceContext}: {Message:lj}{NewLine}{Exception}";
       Log.Logger = new LoggerConfiguration()
           .MinimumLevel.Debug()
           .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
           .Enrich.FromLogContext()
-          .WriteTo.Console()
+          .WriteTo.Console(outputTemplate: logtemplate)
+          .WriteTo.Debug(outputTemplate: logtemplate)
           .CreateLogger();
 
       CreateWebHostBuilder(args).Build().Run();

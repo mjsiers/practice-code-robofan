@@ -14,7 +14,7 @@
 - [x] Add code and unit tests to be able to generate fake/mock data for the data entities
 - [ ] Write code and unit tests for fetching images and saving/retrieving from database
 - [ ] Generate a larger sample JSON files for client based UI development
-- [ ] Add in server logging framework
+- [X] Add in server logging framework
 - [X] Add code to seed the database tables with random data (currently only 1 robo fan when database is created)
 - [ ] Implement REST API controller for fans (images, cards, creating, generating)
 - [ ] Add in middleware to simulate slower response times
