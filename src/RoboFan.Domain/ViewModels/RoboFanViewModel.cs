@@ -15,7 +15,7 @@ namespace RoboFan.Domain.ViewModels
     public string State { get; set; }
     public string BirthDate { get; set; }
     public int Age { get; set; }
-    public byte[] ImageData { get; set; }
+    public string ImageUrl { get; set; }
     public string TeamName { get; set; }
     public string TeamImageUrl { get; set; }
     public List<string> PosTeams { get; set; }

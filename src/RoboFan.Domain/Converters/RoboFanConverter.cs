@@ -19,10 +19,11 @@ namespace RoboFan.Domain.Converters
       model.State = robofan.State;
       model.TeamName = robofan.PrimaryTeam.Name;
       model.TeamImageUrl = robofan.PrimaryTeam.ImageUrl;
+      model.ImageUrl = RoboFanImageConverter.ImageUrl(robofan.RoboFanImage);
 
       // default the view model birthdate and age values
       model.Age = GetAge(robofan.BirthDate, DateTime.Now);
-      model.BirthDate = robofan.BirthDate?.Date.ToString();
+      model.BirthDate = robofan.BirthDate?.Date.ToString("MM/dd/yyyy");
 
       // execute query to get the positive ranked teams for this fan
       model.PosTeams = (from ranking in robofan.FanRankings

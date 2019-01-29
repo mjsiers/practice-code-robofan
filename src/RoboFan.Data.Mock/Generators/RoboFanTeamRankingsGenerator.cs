@@ -20,13 +20,13 @@ namespace RoboFan.Data.Mock.Generators
                    select team.Id).ToList<int>();
 
       // select the positive and negative teams for this fan
-      SelectRandomTeams(maxposteams, robofan.Id, 1, ref teams, ref listRankings);
-      SelectRandomTeams(maxnegteams, robofan.Id, -1, ref teams, ref listRankings);
+      SelectRandomTeams(maxposteams, 1, robofan, leagueTeams, ref teams, ref listRankings);
+      SelectRandomTeams(maxnegteams, -1, robofan, leagueTeams, ref teams, ref listRankings);
 
       return listRankings;
     }
 
-    private static void SelectRandomTeams(int numteams, int fanid, int teamranking, ref List<int> teamids, ref List<RoboFanTeamRanking> listRankings)
+    private static void SelectRandomTeams(int numteams, int teamranking, RoboFanEntity robofan, List<LeagueTeam> leagueTeams, ref List<int> teamids, ref List<RoboFanTeamRanking> listRankings)
     {
       // select the number of requested teams
       Random randNum = new Random();
@@ -34,16 +34,20 @@ namespace RoboFan.Data.Mock.Generators
       {
         // create a new object to save the results int
         var ranking = new RoboFanTeamRanking();
-        ranking.RobotFanId = fanid;
+        ranking.RobotFanId = robofan.Id;
+        ranking.RobotFan = robofan;
         ranking.Ranking = teamranking;
 
         // select a random index from the remaining teams and save in the object
         var teampos = randNum.Next(teamids.Count - 1);
         ranking.LeagueTeamId = teamids[teampos];
-        teamids.RemoveAt(teampos);
+        ranking.LeagueTeam = (from team in leagueTeams
+                              where team.Id == ranking.LeagueTeamId
+                              select team).SingleOrDefault();
 
         // add the object to the return list
         listRankings.Add(ranking);
+        teamids.RemoveAt(teampos);
       }
     }
   }
