@@ -9,7 +9,7 @@ using RoboFan.Data.EFCore;
 namespace RoboFan.Data.EFCore.Migrations
 {
     [DbContext(typeof(RoboFanContext))]
-    [Migration("20190129133139_InitialCreate")]
+    [Migration("20190129164513_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -250,12 +250,14 @@ namespace RoboFan.Data.EFCore.Migrations
 
             modelBuilder.Entity("RoboFan.Domain.Entities.RoboFanImage", b =>
                 {
-                    b.Property<Guid>("GuidId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("ContentType")
                         .IsRequired()
                         .HasMaxLength(64);
+
+                    b.Property<Guid>("GuidId");
 
                     b.Property<int>("Height");
 
@@ -265,7 +267,7 @@ namespace RoboFan.Data.EFCore.Migrations
 
                     b.Property<int>("Width");
 
-                    b.HasKey("GuidId");
+                    b.HasKey("Id");
 
                     b.HasIndex("RoboFanId")
                         .IsUnique();

@@ -14,8 +14,9 @@ namespace RoboFan.Data.EFCore
 
   public class RoboFanContext : DbContext
   {
-    public virtual DbSet<RoboFan.Domain.Entities.RoboFan> RoboFan { get; set; }
     public virtual DbSet<LeagueTeam> LeagueTeam { get; set; }
+    public virtual DbSet<RoboFanEntity> RoboFan { get; set; }
+    public virtual DbSet<RoboFanImage> RoboFanImage { get; set; }
     public virtual DbSet<RoboFanTeamRanking> RoboFanTeamRanking { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

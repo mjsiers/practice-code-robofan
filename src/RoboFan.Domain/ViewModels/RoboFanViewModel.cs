@@ -7,7 +7,6 @@ namespace RoboFan.Domain.ViewModels
   public class RoboFanViewModel
   {
     public int Id { get; set; }
-    public Guid GuidId { get; set; }
     public string FirstName { get; set; }
     public string LastName { get; set; }
     public string Address { get; set; }

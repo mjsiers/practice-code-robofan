@@ -12,6 +12,7 @@ namespace RoboFan.Data.Mock.Generators
       const int imgheight = 80;
       RoboFanImage fanimage = new RoboFanImage();
 
+      fanimage.Id = robofanid;
       fanimage.GuidId = Guid.NewGuid();
       fanimage.Width = imgwidth;
       fanimage.Height = imgheight;

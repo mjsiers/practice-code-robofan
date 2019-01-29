@@ -51,6 +51,8 @@ namespace RoboFan.Data.EFCore.Migrations
                 name: "RoboFanImage",
                 columns: table => new
                 {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
                     GuidId = table.Column<Guid>(nullable: false),
                     Width = table.Column<int>(nullable: false),
                     Height = table.Column<int>(nullable: false),
@@ -60,7 +62,7 @@ namespace RoboFan.Data.EFCore.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_RoboFanImage", x => x.GuidId);
+                    table.PrimaryKey("PK_RoboFanImage", x => x.Id);
                     table.ForeignKey(
                         name: "FK_RoboFanImage_RoboFan_RoboFanId",
                         column: x => x.RoboFanId,
