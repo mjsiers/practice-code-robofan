@@ -14,6 +14,9 @@ import { RoboFanDataService } from './robofan-data.service';
 import { HomeComponent } from './home/home.component';
 import { SettingsComponent } from './settings/settings.component';
 import { FancardComponent } from './fancard/fancard.component';
+import { FanGeneratorComponent } from './fan-generator/fan-generator.component';
+import { FanFormComponent } from './fan-form/fan-form.component';
+import { SettingsDelayComponent } from './settings-delay/settings-delay.component';
 
 
 const routes: Routes = [
@@ -26,7 +29,10 @@ const routes: Routes = [
     AppComponent,
     HomeComponent,
     SettingsComponent,
-    FancardComponent
+    FancardComponent,
+    FanGeneratorComponent,
+    FanFormComponent,
+    SettingsDelayComponent
   ],
   imports: [
     //BrowserModule,

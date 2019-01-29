@@ -1,0 +1,16 @@
+<form fxLayoutAlign="center center" fxLayoutGap="10px" (ngSubmit)="onSubmit()">
+  <table>
+    <tr>
+      <td>
+        <mat-form-field>
+          <input matInput type="number" min=1 max=10 value=1 placeholder="Number of RoboFans" id="numfans" [(ngModel)]="numfans" name="numfans">
+        </mat-form-field>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <button type="submit" class="mat-raised-button">Submit</button>
+      </td>
+    </tr>
+  </table>
+</form>
