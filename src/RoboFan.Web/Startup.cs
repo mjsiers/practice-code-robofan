@@ -5,7 +5,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using RoboFan.Domain.Repositories;
 using RoboFan.Data.EFCore;
+using RoboFan.Data.EFCore.Repositories;
 
 namespace RoboFan.Web
 {
@@ -21,11 +23,14 @@ namespace RoboFan.Web
     // This method gets called by the runtime. Use this method to add services to the container.
     public void ConfigureServices(IServiceCollection services)
     {
-      services.AddScoped<RoboFanDbInitializer>();
       services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
-      // add in the sqlite database context
+      // add in the sqlite database context, initializer, and repositories
       services.AddEntityFrameworkSqlite().AddDbContext<RoboFanContext>();
+      services.AddScoped<RoboFanDbInitializer>();
+      services.AddScoped<ILeagueTeamRepository, LeagueTeamRepository>();
+      services.AddScoped<IRoboFanRepository, RoboFanRepository>();
+      services.AddScoped<IRoboFanImageRepository, RoboFanImageRepository>();
 
       // In production, the Angular files will be served from this directory
       services.AddSpaStaticFiles(configuration =>

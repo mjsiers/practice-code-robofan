@@ -9,7 +9,7 @@ using RoboFanEntity = RoboFan.Domain.Entities.RoboFan;
 
 namespace RoboFan.Data.EFCore.Repositories
 {
-  public class RoboFanRepository : IRobotFanRepository
+  public class RoboFanRepository : IRoboFanRepository
   {
     private readonly RoboFanContext _context;
 

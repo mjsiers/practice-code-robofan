@@ -6,7 +6,7 @@ using RoboFanEntity = RoboFan.Domain.Entities.RoboFan;
 
 namespace RoboFan.Domain.Repositories
 {
-  public interface IRobotFanRepository : IDisposable
+  public interface IRoboFanRepository : IDisposable
   {
     Task<List<RoboFanEntity>> GetAllAsync(CancellationToken ct = default(CancellationToken));
     Task<RoboFanEntity> GetByIdAsync(int id, CancellationToken ct = default(CancellationToken));
