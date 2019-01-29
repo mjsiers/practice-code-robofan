@@ -6,8 +6,6 @@ using System.Text;
 
 namespace RoboFan.Domain.Entities
 {
-  // https://www.learnentityframeworkcore.com/
-
   public class LeagueTeam
   {
     [Key]

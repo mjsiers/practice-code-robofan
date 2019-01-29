@@ -10,7 +10,6 @@ namespace RoboFan.Domain.Entities
   {
     [Key]
     public int Id { get; set; }
-    public Guid GuidId { get; set; }
     public string FirstName { get; set; }
     public string LastName { get; set; }
     public string Address { get; set; }
@@ -18,8 +17,8 @@ namespace RoboFan.Domain.Entities
     public string State { get; set; }
     [Column("BirthDate", TypeName = "DateTime2")]
     public DateTime? BirthDate { get; set; }
-    public byte[] Image { get; set; }
 
+    public virtual RoboFanImage RoboFanImage { get; set; }
     public int? PrimaryTeamId { get; set; }
     public virtual LeagueTeam PrimaryTeam { get; set; }
     public virtual ICollection<RoboFanTeamRanking> FanRankings { get; set; }

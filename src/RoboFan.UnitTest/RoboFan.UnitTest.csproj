@@ -16,7 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Generators\" />
     <Folder Include="Repositories\" />
   </ItemGroup>
 

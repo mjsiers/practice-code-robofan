@@ -9,8 +9,8 @@ using RoboFan.Data.EFCore;
 namespace RoboFan.Data.EFCore.Migrations
 {
     [DbContext(typeof(RoboFanContext))]
-    [Migration("20190128194644_SeedLeagueTeams")]
-    partial class SeedLeagueTeams
+    [Migration("20190129035917_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -231,10 +231,6 @@ namespace RoboFan.Data.EFCore.Migrations
                         .IsRequired()
                         .HasMaxLength(64);
 
-                    b.Property<Guid>("GuidId");
-
-                    b.Property<byte[]>("Image");
-
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasMaxLength(64);
@@ -250,6 +246,31 @@ namespace RoboFan.Data.EFCore.Migrations
                     b.HasIndex("PrimaryTeamId");
 
                     b.ToTable("RoboFan");
+                });
+
+            modelBuilder.Entity("RoboFan.Domain.Entities.RoboFanImage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("ContentType");
+
+                    b.Property<Guid>("GuidId");
+
+                    b.Property<int>("Height");
+
+                    b.Property<byte[]>("ImageData");
+
+                    b.Property<int?>("RoboFanId");
+
+                    b.Property<int>("Width");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RoboFanId")
+                        .IsUnique();
+
+                    b.ToTable("RoboFanImage");
                 });
 
             modelBuilder.Entity("RoboFan.Domain.Entities.RoboFanTeamRanking", b =>
@@ -272,6 +293,13 @@ namespace RoboFan.Data.EFCore.Migrations
                     b.HasOne("RoboFan.Domain.Entities.LeagueTeam", "PrimaryTeam")
                         .WithMany("RobotFans")
                         .HasForeignKey("PrimaryTeamId");
+                });
+
+            modelBuilder.Entity("RoboFan.Domain.Entities.RoboFanImage", b =>
+                {
+                    b.HasOne("RoboFan.Domain.Entities.RoboFan", "RoboFan")
+                        .WithOne("RoboFanImage")
+                        .HasForeignKey("RoboFan.Domain.Entities.RoboFanImage", "RoboFanId");
                 });
 
             modelBuilder.Entity("RoboFan.Domain.Entities.RoboFanTeamRanking", b =>

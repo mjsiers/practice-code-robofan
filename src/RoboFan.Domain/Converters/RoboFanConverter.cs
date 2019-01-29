@@ -12,7 +12,6 @@ namespace RoboFan.Domain.Converters
     {
       var model = new RoboFanViewModel();
       model.Id = robofan.Id;
-      model.GuidId = robofan.GuidId;
       model.FirstName = robofan.FirstName;
       model.LastName = robofan.LastName;
       model.Address = robofan.Address;
@@ -22,7 +21,7 @@ namespace RoboFan.Domain.Converters
       model.TeamImageUrl = robofan.PrimaryTeam.ImageUrl;
 
       // default the view model birthdate and age values
-      model.Age = GetAge(robofan.BirthDate);
+      model.Age = GetAge(robofan.BirthDate, DateTime.Now);
       model.BirthDate = robofan.BirthDate?.Date.ToString();
 
       // execute query to get the positive ranked teams for this fan
@@ -37,25 +36,21 @@ namespace RoboFan.Domain.Converters
                         orderby ranking.LeagueTeam.Name ascending
                         select ranking.LeagueTeam.Name).ToList<string>();
 
-      // todo: handle image as URL or data?
-      //model.FanImageUrl = robofan.I
-
       return model;
     }
 
-    public static int GetAge(DateTime? birthDate)
+    public static int GetAge(DateTime? birthDate, DateTime fromdateTime)
     {
       int age = -1;
-      DateTime n = DateTime.Now;
 
       // ensure birthdate is valid
       if (birthDate.HasValue)
       {
         // compute the different in years
-        age = n.Year - birthDate.Value.Year;
+        age = fromdateTime.Year - birthDate.Value.Year;
 
         // reduce age value if current month or day precedes the birth date value
-        if (n.Month < birthDate.Value.Month || (n.Month == birthDate.Value.Month && n.Day < birthDate.Value.Day))
+        if (fromdateTime.Month < birthDate.Value.Month || (fromdateTime.Month == birthDate.Value.Month && fromdateTime.Day < birthDate.Value.Day))
         {
           age--;
         }

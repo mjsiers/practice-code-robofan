@@ -10,8 +10,8 @@
 - [X] Add in required dependencies for EFCore and SQLite
 - [X] Implement required classes for data access layer
 - [X] Add code to seed the teams table since this data is static
+- [X] Add unit test for computation of age from birthdate value
 - [ ] Add code and unit tests to be able to generate fake/mock data for the data entities
-- [ ] Add unit test for computation of age from birthdate value
 - [ ] Write code and unit tests for fetching images and saving/retrieving from database
 - [ ] Generate a larger sample JSON files for client based UI development
 - [ ] Add in server logging framework
