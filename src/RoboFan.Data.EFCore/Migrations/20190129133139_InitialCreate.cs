@@ -51,24 +51,22 @@ namespace RoboFan.Data.EFCore.Migrations
                 name: "RoboFanImage",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
                     GuidId = table.Column<Guid>(nullable: false),
                     Width = table.Column<int>(nullable: false),
                     Height = table.Column<int>(nullable: false),
-                    ContentType = table.Column<string>(nullable: true),
+                    ContentType = table.Column<string>(maxLength: 64, nullable: false),
                     ImageData = table.Column<byte[]>(nullable: true),
                     RoboFanId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_RoboFanImage", x => x.Id);
+                    table.PrimaryKey("PK_RoboFanImage", x => x.GuidId);
                     table.ForeignKey(
                         name: "FK_RoboFanImage_RoboFan_RoboFanId",
                         column: x => x.RoboFanId,
                         principalTable: "RoboFan",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(

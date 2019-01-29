@@ -27,25 +27,29 @@ namespace RoboFan.Data.EFCore
     {
       // ensure the entities configurations are updated
       var cfgRoboFan = new RoboFanConfiguration(modelBuilder.Entity<RoboFanEntity>());
+      var cfgRoboFanImage = new RoboFanImageConfiguration(modelBuilder.Entity<RoboFanImage>());
       var cfgLeagueTeam = new LeagueTeamConfiguration(modelBuilder.Entity<LeagueTeam>());
 
-      // configure the one-to-one relationship table
+      // configure the one-to-one relationship table with cascading deletes
       modelBuilder.Entity<RoboFanEntity>()
           .HasOne(a => a.RoboFanImage)
           .WithOne(b => b.RoboFan)
-          .HasForeignKey<RoboFanImage>(b => b.RoboFanId);
-
-      // configure the many-to-many relationship table
+          .HasForeignKey<RoboFanImage>(b => b.RoboFanId)
+          .OnDelete(DeleteBehavior.Cascade);
+     
+      // configure the many-to-many relationship table with cascading deletes
       modelBuilder.Entity<RoboFanTeamRanking>()
           .HasKey(tr => new { tr.RobotFanId, tr.LeagueTeamId });
       modelBuilder.Entity<RoboFanTeamRanking>()
           .HasOne(tr => tr.RobotFan)
           .WithMany(rf => rf.FanRankings)
-          .HasForeignKey(rf => rf.RobotFanId);
+          .HasForeignKey(rf => rf.RobotFanId)
+          .OnDelete(DeleteBehavior.Cascade);
       modelBuilder.Entity<RoboFanTeamRanking>()
           .HasOne(tr => tr.LeagueTeam)
           .WithMany(lt => lt.FanRankings)
-          .HasForeignKey(lt => lt.LeagueTeamId);
+          .HasForeignKey(lt => lt.LeagueTeamId)
+          .OnDelete(DeleteBehavior.Cascade);
     }
   }
 }

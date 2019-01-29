@@ -10,6 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\RoboFan.Data.Mock\RoboFan.Data.Mock.csproj" />
     <ProjectReference Include="..\RoboFan.Domain\RoboFan.Domain.csproj" />
   </ItemGroup>
 

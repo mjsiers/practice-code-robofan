@@ -9,7 +9,7 @@ using RoboFan.Data.EFCore;
 namespace RoboFan.Data.EFCore.Migrations
 {
     [DbContext(typeof(RoboFanContext))]
-    [Migration("20190129035917_InitialCreate")]
+    [Migration("20190129133139_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -250,12 +250,12 @@ namespace RoboFan.Data.EFCore.Migrations
 
             modelBuilder.Entity("RoboFan.Domain.Entities.RoboFanImage", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("GuidId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("ContentType");
-
-                    b.Property<Guid>("GuidId");
+                    b.Property<string>("ContentType")
+                        .IsRequired()
+                        .HasMaxLength(64);
 
                     b.Property<int>("Height");
 
@@ -265,7 +265,7 @@ namespace RoboFan.Data.EFCore.Migrations
 
                     b.Property<int>("Width");
 
-                    b.HasKey("Id");
+                    b.HasKey("GuidId");
 
                     b.HasIndex("RoboFanId")
                         .IsUnique();
@@ -299,7 +299,8 @@ namespace RoboFan.Data.EFCore.Migrations
                 {
                     b.HasOne("RoboFan.Domain.Entities.RoboFan", "RoboFan")
                         .WithOne("RoboFanImage")
-                        .HasForeignKey("RoboFan.Domain.Entities.RoboFanImage", "RoboFanId");
+                        .HasForeignKey("RoboFan.Domain.Entities.RoboFanImage", "RoboFanId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("RoboFan.Domain.Entities.RoboFanTeamRanking", b =>
