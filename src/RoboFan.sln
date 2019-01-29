@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.271
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RoboFan.Web", "RoboFan.Web\RoboFan.Web.csproj", "{CD4DFB76-EB1F-4DFD-B3CB-7327C4A9FB76}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RoboFan.Domain", "RoboFan.Domain\RoboFan.Domain.csproj", "{AC6F7510-42A7-4946-852B-921C8A68B950}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RoboFan.Data.EFCore", "RoboFan.Data.EFCore\RoboFan.Data.EFCore.csproj", "{E37B2FA3-2A46-4240-B01C-D4E0EB8B1CED}"
+	ProjectSection(ProjectDependencies) = postProject
+		{AC6F7510-42A7-4946-852B-921C8A68B950} = {AC6F7510-42A7-4946-852B-921C8A68B950}
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RoboFan.Data.Mock", "RoboFan.Data.Mock\RoboFan.Data.Mock.csproj", "{E31390BB-984A-46D9-A095-3FD897622C66}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RoboFan.UnitTest", "RoboFan.UnitTest\RoboFan.UnitTest.csproj", "{B26D1151-683F-4EDB-B3EE-03752F96D953}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CD4DFB76-EB1F-4DFD-B3CB-7327C4A9FB76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD4DFB76-EB1F-4DFD-B3CB-7327C4A9FB76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD4DFB76-EB1F-4DFD-B3CB-7327C4A9FB76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD4DFB76-EB1F-4DFD-B3CB-7327C4A9FB76}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC6F7510-42A7-4946-852B-921C8A68B950}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC6F7510-42A7-4946-852B-921C8A68B950}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC6F7510-42A7-4946-852B-921C8A68B950}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC6F7510-42A7-4946-852B-921C8A68B950}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E37B2FA3-2A46-4240-B01C-D4E0EB8B1CED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E37B2FA3-2A46-4240-B01C-D4E0EB8B1CED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E37B2FA3-2A46-4240-B01C-D4E0EB8B1CED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E37B2FA3-2A46-4240-B01C-D4E0EB8B1CED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E31390BB-984A-46D9-A095-3FD897622C66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E31390BB-984A-46D9-A095-3FD897622C66}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E31390BB-984A-46D9-A095-3FD897622C66}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E31390BB-984A-46D9-A095-3FD897622C66}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B26D1151-683F-4EDB-B3EE-03752F96D953}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B26D1151-683F-4EDB-B3EE-03752F96D953}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B26D1151-683F-4EDB-B3EE-03752F96D953}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B26D1151-683F-4EDB-B3EE-03752F96D953}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EB6C9391-635C-4DF6-ACCC-22B5E9787021}
+	EndGlobalSection
+EndGlobal

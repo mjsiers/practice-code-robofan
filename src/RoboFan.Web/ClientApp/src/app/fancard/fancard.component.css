@@ -1,0 +1,10 @@
+.fancard {
+  width: 80%;
+  margin: 5px auto;
+}
+
+.card-div{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

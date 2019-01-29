@@ -1,0 +1,34 @@
+<div class="card-div">
+  <mat-card class="fancard">
+    <mat-card-header>
+      <img mat-card-avatar src={{fan.teamimageurl}}>
+      <mat-card-title>{{fan.teamname}}</mat-card-title>
+      <mat-card-subtitle><b>Name</b>: {{fan.firstname}} {{fan.lastname}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <div style="display: table">
+        <span style="display: table-cell; vertical-align: middle;"><img src={{fan.fanimageurl}} style="vertical-align: middle;"></span>
+        <span style="display: table-cell">
+          <table>
+            <tr>
+              <td style="font-weight: bold">Address:</td>
+              <td>{{fan.address}}, {{fan.city}}, {{fan.state}}</td>
+            </tr>
+            <tr>
+              <td style="font-weight: bold">Age:</td>
+              <td>{{fan.age}}</td>
+            </tr>
+            <tr>
+              <td style="font-weight: bold">Likes:</td>
+              <td>{{fan.posteams}}</td>
+            </tr>
+            <tr>
+              <td style="font-weight: bold">Dislikes:</td>
+              <td>{{fan.negteams}}</td>
+            </tr>
+          </table>
+        </span>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

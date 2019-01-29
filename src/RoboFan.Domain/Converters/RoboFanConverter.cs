@@ -1,0 +1,63 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using RoboFan.Domain.Entities;
+using RoboFan.Domain.ViewModels;
+
+namespace RoboFan.Domain.Converters
+{
+  public static class RoboFanConverter
+  {
+    public static RoboFanViewModel Convert(Entities.RoboFan robofan)
+    {
+      var model = new RoboFanViewModel();
+      model.Id = robofan.Id;
+      model.FirstName = robofan.FirstName;
+      model.LastName = robofan.LastName;
+      model.Address = robofan.Address;
+      model.City = robofan.City;
+      model.State = robofan.State;
+      model.TeamName = robofan.PrimaryTeam.Name;
+      model.TeamImageUrl = robofan.PrimaryTeam.ImageUrl;
+      model.ImageUrl = RoboFanImageConverter.ImageUrl(robofan.RoboFanImage);
+
+      // default the view model birthdate and age values
+      model.Age = GetAge(robofan.BirthDate, DateTime.Now);
+      model.BirthDate = robofan.BirthDate?.Date.ToString("MM/dd/yyyy");
+
+      // execute query to get the positive ranked teams for this fan
+      model.PosTeams = (from ranking in robofan.FanRankings
+                        where ((ranking.Ranking > 0) && (ranking.RobotFanId == robofan.Id))
+                        orderby ranking.LeagueTeam.Name ascending
+                        select ranking.LeagueTeam.Name).ToList<string>();
+
+      // execute query to get the negative ranked teams for this fan
+      model.NegTeams = (from ranking in robofan.FanRankings
+                        where ((ranking.Ranking < 0) && (ranking.RobotFanId == robofan.Id))
+                        orderby ranking.LeagueTeam.Name ascending
+                        select ranking.LeagueTeam.Name).ToList<string>();
+
+      return model;
+    }
+
+    public static int GetAge(DateTime? birthDate, DateTime fromdateTime)
+    {
+      int age = -1;
+
+      // ensure birthdate is valid
+      if (birthDate.HasValue)
+      {
+        // compute the different in years
+        age = fromdateTime.Year - birthDate.Value.Year;
+
+        // reduce age value if current month or day precedes the birth date value
+        if (fromdateTime.Month < birthDate.Value.Month || (fromdateTime.Month == birthDate.Value.Month && fromdateTime.Day < birthDate.Value.Day))
+        {
+          age--;
+        }
+      }
+
+      return age;
+    }
+  }
+}
