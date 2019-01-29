@@ -30,3 +30,8 @@
 - [ ] Remove mocked data and image assets from the client app directory
 - [ ] Add settings page to generate more random records
 - [ ] Add settings page to adjust the web server response delay times
+
+### Final Items
+
+- [ ] Add/Update documentation
+- [ ] Verify clean pull from GitHub works properly
