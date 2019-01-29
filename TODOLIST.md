@@ -25,11 +25,13 @@
 - [X] Import in Angular Material and stub out the UI
 - [X] Implement stub data services which provide data from JSON files
 - [X] Implement UI Components using these stub data services
-- [ ] Add in support for scrolling/paging the list of cards
+- [X] Add settings page to create single record (specifying fan name/address info only)
+- [X] Add settings page to generate more random records
+- [X] Add settings page to adjust the web server response delay times
 - [ ] Update application to use data from actual web service
+- [ ] Add in support for scrolling/paging the list of cards
+- [ ] Add in settings form validation
 - [ ] Remove mocked data and image assets from the client app directory
-- [ ] Add settings page to generate more random records
-- [ ] Add settings page to adjust the web server response delay times
 
 ### Final Items
 
