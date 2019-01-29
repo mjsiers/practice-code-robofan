@@ -6,6 +6,7 @@ import {
   MatIconModule,
   MatListModule,
   MatCardModule,
+  MatTabsModule,
   MatInputModule,
   MatButtonModule,
   MatPaginatorModule
@@ -20,6 +21,7 @@ import {
     MatIconModule,
     MatListModule,
     MatCardModule,
+    MatTabsModule,
     MatInputModule,
     MatButtonModule,
     MatPaginatorModule
@@ -30,6 +32,7 @@ import {
     MatIconModule,
     MatListModule,
     MatCardModule,
+    MatTabsModule,
     MatInputModule,
     MatButtonModule,
     MatPaginatorModule

@@ -1,0 +1,42 @@
+<form fxLayoutAlign="center center" fxLayoutGap="10px" (ngSubmit)="onSubmit()">
+  <table>
+    <tr>
+      <td colspan="2">
+        <mat-form-field>
+          <input matInput placeholder="First Name" id="firstname" [(ngModel)]="fan.firstname" name="firstname">
+        </mat-form-field>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <mat-form-field>
+          <input matInput placeholder="Last Name" id="lastname" [(ngModel)]="fan.lastname" name="lastname">
+        </mat-form-field>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <mat-form-field>
+          <input matInput placeholder="Address" id="address" [(ngModel)]="fan.address" name="address">
+        </mat-form-field>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <mat-form-field>
+          <input matInput placeholder="City" id="city" [(ngModel)]="fan.city" name="city">
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field>
+          <input matInput placeholder="State" id="state" [(ngModel)]="fan.state" name="state">
+        </mat-form-field>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <button type="submit" class="mat-raised-button">Submit</button>
+      </td>
+    </tr>
+  </table>
+</form>

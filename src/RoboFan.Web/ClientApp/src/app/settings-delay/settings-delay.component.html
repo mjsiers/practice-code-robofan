@@ -1,0 +1,23 @@
+<form fxLayoutAlign="center center" fxLayoutGap="10px" (ngSubmit)="onSubmit()">
+    <table>
+      <tr>
+        <td>
+          <mat-form-field>
+            <input matInput type="number" min=0 max=5 value=0 placeholder="Min Delay" id="min" [(ngModel)]="delay.min" name="min">
+          </mat-form-field>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <mat-form-field>
+            <input matInput type="number" min=0 max=5 value=0 placeholder="Max Delay" id="max" [(ngModel)]="delay.max" name="max">
+          </mat-form-field>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <button type="submit" class="mat-raised-button">Submit</button>
+        </td>
+      </tr>
+    </table>
+  </form>
