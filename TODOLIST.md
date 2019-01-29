@@ -15,9 +15,10 @@
 - [ ] Write code and unit tests for fetching images and saving/retrieving from database
 - [ ] Generate a larger sample JSON files for client based UI development
 - [ ] Add in server logging framework
-- [ ] Add code to seed the database tables with random data
-- [ ] Implement REST API controllers
+- [X] Add code to seed the database tables with random data (currently only 1 robo fan when database is created)
+- [ ] Implement REST API controller for fans (images, cards, creating, generating)
 - [ ] Add in middleware to simulate slower response times
+- [ ] Implement REST API controller for configuring slower response times
 
 ### Angular Frontend
 

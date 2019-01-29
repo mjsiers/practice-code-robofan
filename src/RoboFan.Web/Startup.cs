@@ -21,9 +21,11 @@ namespace RoboFan.Web
     // This method gets called by the runtime. Use this method to add services to the container.
     public void ConfigureServices(IServiceCollection services)
     {
-      // add in the sqlite database context
-      //services.AddEntityFrameworkSqlite().AddDbContext<RoboFanContext>();
+      services.AddScoped<RoboFanDbInitializer>();
       services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+      // add in the sqlite database context
+      services.AddEntityFrameworkSqlite().AddDbContext<RoboFanContext>();
 
       // In production, the Angular files will be served from this directory
       services.AddSpaStaticFiles(configuration =>
@@ -46,10 +48,16 @@ namespace RoboFan.Web
         app.UseHsts();
       }
 
+      // ensure the database is initialized properly
+      using (var scope = app.ApplicationServices.CreateScope())
+      {
+        var dbinit = scope.ServiceProvider.GetService<RoboFanDbInitializer>();
+        dbinit.Seed();
+      }
+
       app.UseHttpsRedirection();
       app.UseStaticFiles();
       app.UseSpaStaticFiles();
-
       app.UseMvc(routes =>
       {
         routes.MapRoute(
@@ -69,8 +77,6 @@ namespace RoboFan.Web
           spa.UseAngularCliServer(npmScript: "start");
         }
       });
-
-
     }
   }
 }
