@@ -14,7 +14,7 @@ namespace RoboFan.Data.EFCore
       _ctx = ctx;
     }
 
-    public async void Seed()
+    public async void Seed(string path)
     {
       // ensure the database exists and is upto to date first
       _log.Information("Migrating database (if needed).");
@@ -25,7 +25,7 @@ namespace RoboFan.Data.EFCore
       if (!fansexist)
       {
         _log.Information("Generating new RoboFan records.");
-        var listfans = RoboFanGenerator.Generate(1, true, true);
+        var listfans = RoboFanGenerator.Generate(1, path, true);
         foreach (var fan in listfans)
         {
           // save off the fan ranking values since we cannot add them until we know the record id

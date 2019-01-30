@@ -56,7 +56,17 @@ export class ApiMockService {
   }
 
   postDelay(delay: RoboFanDelay) {
+    var url = this.baseUrl + 'api/robofan/delay'
+    var body = JSON.stringify(delay);
+    console.log('ApiMockService::postDelay', url);
     console.log('ApiMockService::postDelay', delay);
+    this.http.post(url, body, { headers: this.headers })
+      .subscribe(res => {
+        console.log(res);
+      },
+      err => {
+        console.log("Error occured");
+      });
   }
 
   private handleError (error: Response | any) {

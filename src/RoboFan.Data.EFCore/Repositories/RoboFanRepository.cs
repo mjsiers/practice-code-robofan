@@ -51,12 +51,24 @@ namespace RoboFan.Data.EFCore.Repositories
       {
         // save off the fan ranking values since we cannot add them until we know the record id
         // also clear out the primary team since the record already exists in db
+        var fanimage = fan.RoboFanImage;
         var fanrankings = fan.FanRankings;
+        fan.RoboFanImage = null;
         fan.FanRankings = null;
         fan.PrimaryTeam = null;
 
         // add the fan and image records to the database
+        fan.Id = 0;
         _context.RoboFan.Add(fan);
+        await _context.SaveChangesAsync(ct);
+
+        // update the fan id value and add in the image record
+        fanimage.Id = 0;
+        fanimage.RoboFanId = fan.Id;
+        _context.RoboFanImage.Add(fanimage);
+        await _context.SaveChangesAsync(ct);
+
+        // loop over all the rankings
         foreach (var ranking in fanrankings)
         {
           // ensure the objects are null and ids are correct
@@ -66,9 +78,9 @@ namespace RoboFan.Data.EFCore.Repositories
           // save the ranking record
           _context.RoboFanTeamRanking.Add(ranking);
         }
+        await _context.SaveChangesAsync(ct);
       }
 
-      await _context.SaveChangesAsync(ct);
       return true;
     }
 

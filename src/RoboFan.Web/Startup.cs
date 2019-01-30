@@ -56,8 +56,10 @@ namespace RoboFan.Web
       // ensure the database is initialized properly
       using (var scope = app.ApplicationServices.CreateScope())
       {
+        var rootpath = env.WebRootPath;
+        var robopath = System.IO.Path.Combine(rootpath, "images/robots");
         var dbinit = scope.ServiceProvider.GetService<RoboFanDbInitializer>();
-        dbinit.Seed();
+        dbinit.Seed(robopath);
       }
 
       app.UseHttpsRedirection();

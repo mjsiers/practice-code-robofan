@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using RoboFan.Data.Mock.Generators;
@@ -18,11 +19,13 @@ namespace RoboFan.Web.Controllers
   public class RoboFanController : ControllerBase
   {
     private readonly ILogger _log = Log.ForContext<RoboFanController>();
+    private IHostingEnvironment _hostingEnvironment;
     private readonly IRoboFanRepository _roboFanRepository;
     private readonly IRoboFanImageRepository _roboFanImageRepository;
 
-    public RoboFanController(IRoboFanRepository robofan, IRoboFanImageRepository robofanimage)
+    public RoboFanController(IHostingEnvironment environment, IRoboFanRepository robofan, IRoboFanImageRepository robofanimage)
     {
+      _hostingEnvironment = environment;
       _roboFanRepository = robofan;
       _roboFanImageRepository = robofanimage;
     }
@@ -95,9 +98,35 @@ namespace RoboFan.Web.Controllers
       try
       {
         _log.Information("PostCreate: [{0} {1}]", create.FirstName, create.LastName);
-        var listfans = await RoboFanGenerator.GenerateAsync(1);
-        //var status = await _roboFanRepository.AddManyAsync(listfans, ct);
-        return StatusCode(201);
+        var rootpath = _hostingEnvironment.WebRootPath;
+        var robopath = System.IO.Path.Combine(rootpath, "images/robots");
+
+        // generate a random fan and overide values received from this post request
+        var listfans = await RoboFanGenerator.GenerateAsync(1, robopath, true);
+        if (!string.IsNullOrEmpty(create.FirstName))
+        {
+          listfans[0].FirstName = create.FirstName;
+        }
+        if (!string.IsNullOrEmpty(create.LastName))
+        {
+          listfans[0].LastName = create.LastName;
+        }
+        if (!string.IsNullOrEmpty(create.Address))
+        {
+          listfans[0].Address = create.Address;
+        }
+        if (!string.IsNullOrEmpty(create.City))
+        {
+          listfans[0].City = create.City;
+        }
+        if (!string.IsNullOrEmpty(create.State))
+        {
+          listfans[0].State = create.State;
+        }
+
+        // add the new fan to the databasse
+        var status = await _roboFanRepository.AddManyAsync(listfans, ct);
+        return StatusCode(201, status);
       }
       catch (Exception ex)
       {
@@ -114,7 +143,41 @@ namespace RoboFan.Web.Controllers
         if ((generate.Num <= 0) || (generate.Num > 10))
           return BadRequest();
 
-        var listfans = await RoboFanGenerator.GenerateAsync(generate.Num);
+        var rootpath = _hostingEnvironment.WebRootPath;
+        var robopath = System.IO.Path.Combine(rootpath, "images/robots");
+        var listfans = await RoboFanGenerator.GenerateAsync(generate.Num, robopath, true);
+        var status = await _roboFanRepository.AddManyAsync(listfans, ct);
+        return StatusCode(201, status);
+      }
+      catch (Exception ex)
+      {
+        return StatusCode(500, ex);
+      }
+    }
+
+    [HttpPost("delay")]
+    public IActionResult PostDelay([FromBody]RoboFanDelay delay, CancellationToken ct = default)
+    {
+      try
+      {
+        _log.Information("PostDelay: [min:{0} max:{1}]", delay.Min, delay.Max);
+        if ((delay.Min < 0) || (delay.Max <  0))
+        {
+          _log.Warning("PostDelay: Values must be positive");
+          return BadRequest();
+        }
+        else if ((delay.Min > 5) || (delay.Max > 5))
+        {
+          _log.Warning("PostDelay: Values must be <= 5");
+          return BadRequest();
+        }
+        else if (delay.Min > delay.Max)
+        {
+          _log.Warning("PostDelay: Min must be <= Max");
+          return BadRequest();
+        }
+
+        //var listfans = await RoboFanGenerator.GenerateAsync(generate.Num);
         //var status = await _roboFanRepository.AddManyAsync(listfans, ct);
         return StatusCode(201);
       }
