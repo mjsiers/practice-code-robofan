@@ -32,13 +32,6 @@ export class ApiMockService {
     var body = JSON.stringify(fan);
     console.log('ApiMockService::postCreate', url);
     console.log('ApiMockService::postCreate', fan);
-    this.http.post(url, body, { headers: this.headers })
-      .subscribe(res => {
-        console.log(res);
-      },
-      err => {
-        console.log("Error occured");
-      });
   }
 
   postGenerate(generate: RoboFanGenerate) {
@@ -46,13 +39,6 @@ export class ApiMockService {
     var body = JSON.stringify(generate);
     console.log('ApiMockService::postGenerate', url);
     console.log('ApiMockService::postGenerate', generate);
-    this.http.post(url, body, { headers: this.headers })
-      .subscribe(res => {
-        console.log(res);
-      },
-      err => {
-        console.log("Error occured");
-      });
   }
 
   postDelay(delay: RoboFanDelay) {
@@ -60,13 +46,6 @@ export class ApiMockService {
     var body = JSON.stringify(delay);
     console.log('ApiMockService::postDelay', url);
     console.log('ApiMockService::postDelay', delay);
-    this.http.post(url, body, { headers: this.headers })
-      .subscribe(res => {
-        console.log(res);
-      },
-      err => {
-        console.log("Error occured");
-      });
   }
 
   private handleError (error: Response | any) {

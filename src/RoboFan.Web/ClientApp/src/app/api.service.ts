@@ -1,5 +1,5 @@
 import { Injectable, Inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -15,34 +15,52 @@ import { RoboFanDelay } from './robofan-delay';
 })
 export class ApiService {
   baseUrl: string;
+  headers = new HttpHeaders({'Content-Type':'application/json; charset=utf-8'});
   constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string)
   {
     console.log('ApiService::BASEURL:', baseUrl);
     this.baseUrl = baseUrl;
   }
 
-  //getFansAll() : Observable<RoboFan[]> {
-    //return Observable.of(listfans.robofans);
-  //}
+  getFansAll() : Observable<RoboFan[]> {
+    var url = this.baseUrl + 'api/robofan'
+    return this.http.get<RoboFan[]>(url);
+  }
 
   postCreate(fan: RoboFanCreate) {
     var url = this.baseUrl + 'api/robofan/create'
-    console.log('ApiService::postCreate', fan);
+    var body = JSON.stringify(fan);
+    this.http.post(url, body, { headers: this.headers })
+      .subscribe(res => {
+        console.log(res);
+      },
+      err => {
+        console.log("Error occured");
+      });
   }
 
   postGenerate(generate: RoboFanGenerate) {
     var url = this.baseUrl + 'api/robofan/generate'
-    console.log('ApiService::postGenerate', generate);
+    var body = JSON.stringify(generate);
+    this.http.post(url, body, { headers: this.headers })
+      .subscribe(res => {
+        console.log(res);
+      },
+      err => {
+        console.log("Error occured");
+      });
   }
 
   postDelay(delay: RoboFanDelay) {
     var url = this.baseUrl + 'api/robofan/delay'
-    console.log('ApiService::postDelay', delay);
-  }
-
-  private handleError (error: Response | any) {
-    console.error('ApiService::handleError', error);
-    return Observable.throw(error);
+    var body = JSON.stringify(delay);
+    this.http.post(url, body, { headers: this.headers })
+      .subscribe(res => {
+        console.log(res);
+      },
+      err => {
+        console.log("Error occured");
+      });
   }
 
   //public get() {

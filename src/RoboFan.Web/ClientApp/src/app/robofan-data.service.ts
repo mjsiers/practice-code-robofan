@@ -11,7 +11,7 @@ import { RoboFanDelay } from './robofan-delay';
   providedIn: 'root'
 })
 export class RoboFanDataService {
-  constructor(private api: ApiMockService) { }
+  constructor(private api: ApiService) { }
 
   getFansAll() : Observable<RoboFan[]> {
     return this.api.getFansAll();
