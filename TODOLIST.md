@@ -17,7 +17,7 @@
 - [X] Pre-generate some of the robot images using python to improve web app performance
 - [X] Add in server logging framework
 - [X] Add code to seed the database tables with random data (currently only 1 robo fan when database is created)
-- [ ] Implement REST API controller for fans (**images**, cards, **creating**, **generating**, delay)
+- [ ] Implement REST API controller for fans (**images**, **cards**, **creating**, **generating**, delay)
 - [ ] Add in middleware to simulate slower response times
 
 ### Angular Frontend
@@ -29,9 +29,10 @@
 - [X] Add settings page to create single record (specifying fan name/address info only)
 - [X] Add settings page to generate more random records
 - [X] Add settings page to adjust the web server response delay times
-- [ ] Update application to use data from actual web service
-- [ ] Remove mocked data and image assets from the client app directory
+- [X] Update application to use data from actual web service
+- [X] Remove mocked data and image assets from the client app directory
 - [ ] Add in support for scrolling/paging the list of cards
+- [ ] Add in overlay for slow responses
 - [ ] Add in settings form validation
 
 ### Final Items
