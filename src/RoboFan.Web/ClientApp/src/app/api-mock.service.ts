@@ -1,5 +1,5 @@
 import { Injectable, Inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { RoboFan } from './robofan';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
@@ -15,6 +15,7 @@ import { RoboFanDelay } from './robofan-delay';
   providedIn: 'root'
 })
 export class ApiMockService {
+  headers = new HttpHeaders({'Content-Type':'application/json; charset=utf-8'});
   baseUrl: string;
   constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string)
   {
@@ -27,11 +28,31 @@ export class ApiMockService {
   }
 
   postCreate(fan: RoboFanCreate) {
+    var url = this.baseUrl + 'api/robofan/create'
+    var body = JSON.stringify(fan);
+    console.log('ApiMockService::postCreate', url);
     console.log('ApiMockService::postCreate', fan);
+    this.http.post(url, body, { headers: this.headers })
+      .subscribe(res => {
+        console.log(res);
+      },
+      err => {
+        console.log("Error occured");
+      });
   }
 
   postGenerate(generate: RoboFanGenerate) {
+    var url = this.baseUrl + 'api/robofan/generate'
+    var body = JSON.stringify(generate);
+    console.log('ApiMockService::postGenerate', url);
     console.log('ApiMockService::postGenerate', generate);
+    this.http.post(url, body, { headers: this.headers })
+      .subscribe(res => {
+        console.log(res);
+      },
+      err => {
+        console.log("Error occured");
+      });
   }
 
   postDelay(delay: RoboFanDelay) {

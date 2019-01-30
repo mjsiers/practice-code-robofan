@@ -1,5 +1,5 @@
 export class RoboFanGenerate {
   constructor(
-    public num: number = 1,
+    public Num: number = 1,
   ) {}
 }

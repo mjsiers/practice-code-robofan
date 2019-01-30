@@ -89,17 +89,34 @@ namespace RoboFan.Web.Controllers
       }
     }
 
-    [HttpPost("generate")]
-    public async Task<IActionResult> PostGenerate([FromBody]int numfans, CancellationToken ct = default)
+    [HttpPost("create")]
+    public async Task<IActionResult> PostCreate([FromBody]RoboFanCreate create, CancellationToken ct = default)
     {
       try
       {
-        if ((numfans <= 0) || (numfans > 10))
+        _log.Information("PostCreate: [{0} {1}]", create.FirstName, create.LastName);
+        var listfans = await RoboFanGenerator.GenerateAsync(1);
+        //var status = await _roboFanRepository.AddManyAsync(listfans, ct);
+        return StatusCode(201);
+      }
+      catch (Exception ex)
+      {
+        return StatusCode(500, ex);
+      }
+    }
+
+    [HttpPost("generate")]
+    public async Task<IActionResult> PostGenerate([FromBody]RoboFanGenerate generate, CancellationToken ct = default)
+    {
+      try
+      {
+        _log.Information("PostGenerate: [{0}]", generate.Num);
+        if ((generate.Num <= 0) || (generate.Num > 10))
           return BadRequest();
 
-        var listfans = await RoboFanGenerator.GenerateAsync(numfans);
-        var status = await _roboFanRepository.AddManyAsync(listfans, ct);
-        return StatusCode(201, status);
+        var listfans = await RoboFanGenerator.GenerateAsync(generate.Num);
+        //var status = await _roboFanRepository.AddManyAsync(listfans, ct);
+        return StatusCode(201);
       }
       catch (Exception ex)
       {

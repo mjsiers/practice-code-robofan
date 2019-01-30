@@ -1,9 +1,9 @@
 export class RoboFanCreate {
   constructor(
-    public firstname?: string,
-    public lastname?: string,
-    public address?: string,
-    public city?: string,
-    public state?: string,
+    public FirstName?: string,
+    public LastName?: string,
+    public Address?: string,
+    public City?: string,
+    public State?: string,
   ) {}
 }

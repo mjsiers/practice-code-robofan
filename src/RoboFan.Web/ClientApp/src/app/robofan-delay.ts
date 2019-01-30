@@ -1,6 +1,6 @@
 export class RoboFanDelay {
   constructor(
-    public min: number = 0,
-    public max: number = 0,
+    public Min: number = 0,
+    public Max: number = 0,
   ) {}
 }
