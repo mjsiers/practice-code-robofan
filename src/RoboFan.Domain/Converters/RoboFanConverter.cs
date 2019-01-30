@@ -8,6 +8,19 @@ namespace RoboFan.Domain.Converters
 {
   public static class RoboFanConverter
   {
+    public static List<RoboFanViewModel> ConvertList(List<Entities.RoboFan> listfans)
+    {
+      List<RoboFanViewModel> listmodels = new List<RoboFanViewModel>();
+
+      foreach (var fan in listfans)
+      {
+        var model = Convert(fan);
+        listmodels.Add(model);
+      }
+
+      return listmodels;
+    }
+
     public static RoboFanViewModel Convert(Entities.RoboFan robofan)
     {
       var model = new RoboFanViewModel();

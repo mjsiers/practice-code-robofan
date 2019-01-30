@@ -5,6 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using RoboFan.Data.Mock.Generators;
 using RoboFan.Domain.Converters;
 using RoboFan.Domain.Repositories;
 using RoboFan.Domain.ViewModels;
@@ -24,6 +25,27 @@ namespace RoboFan.Web.Controllers
     {
       _roboFanRepository = robofan;
       _roboFanImageRepository = robofanimage;
+    }
+
+    [HttpGet("")]
+    [Produces(typeof(List<RoboFanViewModel>))]
+    public async Task<IActionResult> Get(CancellationToken ct = default)
+    {
+      try
+      {
+        var listfans = await _roboFanRepository.GetAllAsync(ct);
+        if (listfans == null)
+        {
+          return NotFound();
+        }
+
+        var listmodels = RoboFanConverter.ConvertList(listfans);
+        return Ok(listmodels);
+      }
+      catch (Exception ex)
+      {
+        return StatusCode(500, ex);
+      }
     }
 
     [HttpGet("{id}")]
@@ -60,6 +82,24 @@ namespace RoboFan.Web.Controllers
 
         // return the requested robofan image data
         return File(fanimage.ImageData, fanimage.ContentType);
+      }
+      catch (Exception ex)
+      {
+        return StatusCode(500, ex);
+      }
+    }
+
+    [HttpPost("generate")]
+    public async Task<IActionResult> PostGenerate([FromBody]int numfans, CancellationToken ct = default)
+    {
+      try
+      {
+        if ((numfans <= 0) || (numfans > 10))
+          return BadRequest();
+
+        var listfans = await RoboFanGenerator.GenerateAsync(numfans);
+        var status = await _roboFanRepository.AddManyAsync(listfans, ct);
+        return StatusCode(201, status);
       }
       catch (Exception ex)
       {
