@@ -16,7 +16,7 @@
 - [ ] Generate a larger sample JSON files for client based UI development
 - [X] Add in server logging framework
 - [X] Add code to seed the database tables with random data (currently only 1 robo fan when database is created)
-- [ ] Implement REST API controller for fans (images, cards, creating, generating)
+- [ ] Implement REST API controller for fans (**images**, cards, creating, generating)
 - [ ] Add in middleware to simulate slower response times
 - [ ] Implement REST API controller for configuring slower response times
 
