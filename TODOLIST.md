@@ -12,13 +12,13 @@
 - [X] Add code to seed the teams table since this data is static
 - [X] Add unit test for computation of age from birthdate value
 - [x] Add code and unit tests to be able to generate fake/mock data for the data entities
-- [ ] Write code and unit tests for fetching images and saving/retrieving from database
+- [ ] Write unit tests for fetching images and saving/retrieving from database
 - [ ] Generate a larger sample JSON files for client based UI development
+- [X] Pre-generate some of the robot images using python to improve web app performance
 - [X] Add in server logging framework
 - [X] Add code to seed the database tables with random data (currently only 1 robo fan when database is created)
-- [ ] Implement REST API controller for fans (**images**, cards, creating, generating)
+- [ ] Implement REST API controller for fans (**images**, cards, **creating**, **generating**, delay)
 - [ ] Add in middleware to simulate slower response times
-- [ ] Implement REST API controller for configuring slower response times
 
 ### Angular Frontend
 
@@ -30,11 +30,12 @@
 - [X] Add settings page to generate more random records
 - [X] Add settings page to adjust the web server response delay times
 - [ ] Update application to use data from actual web service
+- [ ] Remove mocked data and image assets from the client app directory
 - [ ] Add in support for scrolling/paging the list of cards
 - [ ] Add in settings form validation
-- [ ] Remove mocked data and image assets from the client app directory
 
 ### Final Items
 
+- [ ] Refactor code to simplify solution
 - [ ] Add/Update documentation
 - [ ] Verify clean pull from GitHub works properly
