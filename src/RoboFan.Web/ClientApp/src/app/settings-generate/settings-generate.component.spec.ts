@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FanGeneratorComponent } from './fan-generator.component';
+import { SettingsGenerateComponent } from './settings-generate.component';
 
-describe('FanGeneratorComponent', () => {
-  let component: FanGeneratorComponent;
-  let fixture: ComponentFixture<FanGeneratorComponent>;
+describe('SettingsGenerateComponent', () => {
+  let component: SettingsGenerateComponent;
+  let fixture: ComponentFixture<SettingsGenerateComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FanGeneratorComponent ]
+      declarations: [ SettingsGenerateComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FanGeneratorComponent);
+    fixture = TestBed.createComponent(SettingsGenerateComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

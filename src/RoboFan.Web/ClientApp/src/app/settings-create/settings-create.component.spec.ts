@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FanFormComponent } from './fan-form.component';
+import { SettingsCreateComponent } from './settings-create.component';
 
-describe('FanFormComponent', () => {
-  let component: FanFormComponent;
-  let fixture: ComponentFixture<FanFormComponent>;
+describe('SettingsCreateComponent', () => {
+  let component: SettingsCreateComponent;
+  let fixture: ComponentFixture<SettingsCreateComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FanFormComponent ]
+      declarations: [ SettingsCreateComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FanFormComponent);
+    fixture = TestBed.createComponent(SettingsCreateComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

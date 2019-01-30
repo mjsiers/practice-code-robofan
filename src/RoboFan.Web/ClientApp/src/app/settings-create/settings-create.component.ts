@@ -3,11 +3,11 @@ import { RoboFanDataService } from '../robofan-data.service';
 import { RoboFanCreate } from '../robofan-create';
 
 @Component({
-  selector: 'app-fan-form',
-  templateUrl: './fan-form.component.html',
-  styleUrls: ['./fan-form.component.css']
+  selector: 'app-settings-create',
+  templateUrl: './settings-create.component.html',
+  styleUrls: ['./settings-create.component.css']
 })
-export class FanFormComponent implements OnInit {
+export class SettingsCreateComponent implements OnInit {
   fan = new RoboFanCreate();
   constructor(private fanDataService: RoboFanDataService) { }
 
