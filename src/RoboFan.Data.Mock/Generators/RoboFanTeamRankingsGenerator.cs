@@ -35,7 +35,6 @@ namespace RoboFan.Data.Mock.Generators
         // create a new object to save the results int
         var ranking = new RoboFanTeamRanking();
         ranking.RobotFanId = robofan.Id;
-        ranking.RobotFan = robofan;
         ranking.Ranking = teamranking;
 
         // select a random index from the remaining teams and save in the object

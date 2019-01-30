@@ -5,7 +5,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using RoboFan.Domain.Converters;
 using RoboFan.Domain.Repositories;
+using RoboFan.Domain.ViewModels;
 using Serilog;
 
 namespace RoboFan.Web.Controllers
@@ -22,6 +24,27 @@ namespace RoboFan.Web.Controllers
     {
       _roboFanRepository = robofan;
       _roboFanImageRepository = robofanimage;
+    }
+
+    [HttpGet("{id}")]
+    [Produces(typeof(RoboFanViewModel))]
+    public async Task<IActionResult> Get(int id, CancellationToken ct = default)
+    {
+      try
+      {
+        var robofan = await _roboFanRepository.GetByIdAsync(id, ct);
+        if (robofan == null)
+        {
+          return NotFound();
+        }
+
+        var model = RoboFanConverter.Convert(robofan);
+        return Ok(model);
+      }
+      catch (Exception ex)
+      {
+        return StatusCode(500, ex);
+      }
     }
 
     [HttpGet("{id}/image")]

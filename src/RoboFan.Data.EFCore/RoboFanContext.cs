@@ -34,7 +34,8 @@ namespace RoboFan.Data.EFCore
       // configure the one-to-one relationship table with cascading deletes
       modelBuilder.Entity<RoboFanEntity>()
           .HasOne(a => a.RoboFanImage)
-          .WithOne(b => b.RoboFan)
+          .WithOne()
+          //.WithOne(b => b.RoboFan)
           .HasForeignKey<RoboFanImage>(b => b.RoboFanId)
           .OnDelete(DeleteBehavior.Cascade);
      
@@ -42,13 +43,13 @@ namespace RoboFan.Data.EFCore
       modelBuilder.Entity<RoboFanTeamRanking>()
           .HasKey(tr => new { tr.RobotFanId, tr.LeagueTeamId });
       modelBuilder.Entity<RoboFanTeamRanking>()
-          .HasOne(tr => tr.RobotFan)
+          .HasOne<RoboFanEntity>()
           .WithMany(rf => rf.FanRankings)
           .HasForeignKey(rf => rf.RobotFanId)
           .OnDelete(DeleteBehavior.Cascade);
       modelBuilder.Entity<RoboFanTeamRanking>()
           .HasOne(tr => tr.LeagueTeam)
-          .WithMany(lt => lt.FanRankings)
+          .WithMany()
           .HasForeignKey(lt => lt.LeagueTeamId)
           .OnDelete(DeleteBehavior.Cascade);
     }

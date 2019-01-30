@@ -58,7 +58,7 @@ namespace RoboFan.Data.EFCore.Migrations
                     Height = table.Column<int>(nullable: false),
                     ContentType = table.Column<string>(maxLength: 64, nullable: false),
                     ImageData = table.Column<byte[]>(nullable: true),
-                    RoboFanId = table.Column<int>(nullable: true)
+                    RoboFanId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {

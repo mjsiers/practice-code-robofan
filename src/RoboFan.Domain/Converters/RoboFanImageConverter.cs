@@ -7,7 +7,7 @@ namespace RoboFan.Domain.Converters
   {
     public static string ImageUrl(RoboFanImage fanimage)
     {
-      string imageurl = string.Format("~/robofanimage/{0}", fanimage.Id);
+      string imageurl = string.Format("~/api/robofan/{0}/image", fanimage.Id);
       return imageurl;
     }
   }

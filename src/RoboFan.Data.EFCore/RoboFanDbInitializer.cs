@@ -40,7 +40,6 @@ namespace RoboFan.Data.EFCore
           {
             // ensure the objects are null and ids are correct
             ranking.LeagueTeam = null;
-            ranking.RobotFan = null;
             ranking.RobotFanId = fan.Id;
 
             // save the ranking record

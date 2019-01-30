@@ -261,7 +261,7 @@ namespace RoboFan.Data.EFCore.Migrations
 
                     b.Property<byte[]>("ImageData");
 
-                    b.Property<int?>("RoboFanId");
+                    b.Property<int>("RoboFanId");
 
                     b.Property<int>("Width");
 
@@ -291,13 +291,13 @@ namespace RoboFan.Data.EFCore.Migrations
             modelBuilder.Entity("RoboFan.Domain.Entities.RoboFan", b =>
                 {
                     b.HasOne("RoboFan.Domain.Entities.LeagueTeam", "PrimaryTeam")
-                        .WithMany("RobotFans")
+                        .WithMany()
                         .HasForeignKey("PrimaryTeamId");
                 });
 
             modelBuilder.Entity("RoboFan.Domain.Entities.RoboFanImage", b =>
                 {
-                    b.HasOne("RoboFan.Domain.Entities.RoboFan", "RoboFan")
+                    b.HasOne("RoboFan.Domain.Entities.RoboFan")
                         .WithOne("RoboFanImage")
                         .HasForeignKey("RoboFan.Domain.Entities.RoboFanImage", "RoboFanId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -306,11 +306,11 @@ namespace RoboFan.Data.EFCore.Migrations
             modelBuilder.Entity("RoboFan.Domain.Entities.RoboFanTeamRanking", b =>
                 {
                     b.HasOne("RoboFan.Domain.Entities.LeagueTeam", "LeagueTeam")
-                        .WithMany("FanRankings")
+                        .WithMany()
                         .HasForeignKey("LeagueTeamId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("RoboFan.Domain.Entities.RoboFan", "RobotFan")
+                    b.HasOne("RoboFan.Domain.Entities.RoboFan")
                         .WithMany("FanRankings")
                         .HasForeignKey("RobotFanId")
                         .OnDelete(DeleteBehavior.Cascade);

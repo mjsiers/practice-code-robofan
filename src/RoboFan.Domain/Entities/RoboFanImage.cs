@@ -16,7 +16,7 @@ namespace RoboFan.Domain.Entities
     public string ContentType { get; set; }
     public byte[] ImageData { get; set; }
 
-    public int? RoboFanId { get; set; }
-    public virtual RoboFan RoboFan { get; set; }
+    public int RoboFanId { get; set; }
+    //public virtual RoboFan RoboFan { get; set; }
   }
 }

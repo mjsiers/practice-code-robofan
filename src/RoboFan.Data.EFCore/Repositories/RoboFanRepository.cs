@@ -25,7 +25,12 @@ namespace RoboFan.Data.EFCore.Repositories
 
     public async Task<RoboFanEntity> GetByIdAsync(int id, CancellationToken ct = default(CancellationToken))
     {
-      return await _context.RoboFan.FindAsync(id);
+      // build up query to also load the child objects
+      var query = (from robofan in _context.RoboFan
+                   .Include("RoboFanImage").Include("PrimaryTeam").Include("FanRankings").Include("FanRankings.LeagueTeam")
+                   where robofan.Id == id
+                   select robofan).SingleOrDefaultAsync<RoboFanEntity>();
+      return await query;
     }
 
     public async Task<RoboFanEntity> AddAsync(RoboFanEntity newFan, CancellationToken ct = default(CancellationToken))
