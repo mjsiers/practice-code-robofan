@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { RoboFanEdit } from '../robofan-edit';
+import { RoboFanDataService } from '../robofan-data.service';
+import { RoboFanCreate } from '../robofan-create';
 
 @Component({
   selector: 'app-fan-form',
@@ -7,13 +8,13 @@ import { RoboFanEdit } from '../robofan-edit';
   styleUrls: ['./fan-form.component.css']
 })
 export class FanFormComponent implements OnInit {
-  fan = new RoboFanEdit();
-  constructor() { }
+  fan = new RoboFanCreate();
+  constructor(private fanDataService: RoboFanDataService) { }
 
   ngOnInit() {
   }
 
   onSubmit() {
-    alert("Thanks for submitting! Data: " + JSON.stringify(this.fan));
+    this.fanDataService.postCreate(this.fan);
   }
 }

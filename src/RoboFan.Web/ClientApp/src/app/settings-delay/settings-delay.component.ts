@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { DelayEdit } from '../delay-edit';
+import { RoboFanDataService } from '../robofan-data.service';
+import { RoboFanDelay } from '../robofan-delay';
 
 @Component({
   selector: 'app-settings-delay',
@@ -7,13 +8,13 @@ import { DelayEdit } from '../delay-edit';
   styleUrls: ['./settings-delay.component.css']
 })
 export class SettingsDelayComponent implements OnInit {
-  delay = new DelayEdit();
-  constructor() { }
+  delay = new RoboFanDelay();
+  constructor(private fanDataService: RoboFanDataService) { }
 
   ngOnInit() {
   }
 
   onSubmit() {
-    alert("Thanks for submitting! Data: " + JSON.stringify(this.delay));
+    this.fanDataService.postDelay(this.delay);
   }
 }

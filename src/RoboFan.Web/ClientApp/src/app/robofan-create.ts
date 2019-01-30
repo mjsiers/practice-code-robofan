@@ -1,4 +1,4 @@
-export class RoboFanEdit {
+export class RoboFanCreate {
   constructor(
     public firstname?: string,
     public lastname?: string,

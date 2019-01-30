@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { RoboFanDataService } from '../robofan-data.service';
+import { RoboFanGenerate } from '../robofan-generate';
 
 @Component({
   selector: 'app-fan-generator',
@@ -6,13 +8,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./fan-generator.component.css']
 })
 export class FanGeneratorComponent implements OnInit {
-  numfans = 1;
-  constructor() { }
+  generate = new RoboFanGenerate();
+  constructor(private fanDataService: RoboFanDataService) { }
 
   ngOnInit() {
   }
 
   onSubmit() {
-    alert("Thanks for submitting! Data: " + JSON.stringify(this.numfans));
+    this.fanDataService.postGenerate(this.generate);
   }
 }
