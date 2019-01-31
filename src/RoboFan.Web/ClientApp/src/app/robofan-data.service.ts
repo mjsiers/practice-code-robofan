@@ -22,7 +22,7 @@ export class RoboFanDataService {
   }
 
   postCreate(fan: RoboFanCreate) {
-    this.api.postCreate(fan);
+    return this.api.postCreate(fan);
   }
 
   postGenerate(generate: RoboFanGenerate) {
