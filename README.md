@@ -10,7 +10,7 @@ The purpose this learning project is to build a web application that can satisfy
     - [X] Displaying two images (one is a static resource and other is served from the database).
     - [X] Search box allows user to filter the records by the name fields.             
 - Solution should either seed data or provide a way to enter new users or both.
-    - [X] When database is creating, it will be seeded with three (3) randomly generated records.  
+    - [X] When database is created, it will be seeded with three (3) randomly generated records.  
     - [X] Users can create a single record specifying the name values on the Settings/Create tab. 
     - [X] Users can generate more random records from the Settings/Generate tab.              
 - Simulate search being slow and have the UI gracefully handle the delay.
@@ -32,11 +32,11 @@ The teams are randomly assigned to each fan.
 
 ### Web Application
 The web application will provide a UI that will display a list of cards for each RoboFan.  The Card will display 
-their primary MLS team along with the RoboFan demographic information.  The [**RoboHash**](https://robohash.org/) 
-website will be used to generate an image for each RoboFan.  The web UI will provide a text box that will allow 
-the user filter the list of fans by their name values (first and last names).
+their primary MLS team along with the RoboFan demographic information.  The code from the [**RoboHash**](https://robohash.org/) 
+website will be used to generate a set of random images which will be assigned to each fan.  The web UI will provide 
+a text box that will allow the user filter the list of fans by their name values (first and last names).
 
-Initially when the web application creates a new database, it will seed the database with a random set of RoboFan
+Initially when the web application creates a new database, it will seed the database with a random set of fan
 records.  The web application will also provide a way for the end user to generate more random records into the
 database.  The user can also create a single record in which they can specify some of the fan information.
 
