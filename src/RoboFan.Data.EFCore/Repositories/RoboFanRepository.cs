@@ -27,6 +27,22 @@ namespace RoboFan.Data.EFCore.Repositories
       return await query;
     }
 
+    public async Task<List<RoboFanEntity>> GetAllFilterAsync(string namefilter, CancellationToken ct = default(CancellationToken))
+    {
+      // first query for all the records
+      var query = (from robofan in _context.RoboFan
+                   .Include("RoboFanImage").Include("PrimaryTeam").Include("FanRankings").Include("FanRankings.LeagueTeam")
+                   select robofan);
+      if (!string.IsNullOrEmpty(namefilter))
+      {
+        // add in the specified name filter value
+        query = query.Where(s => s.FirstName.Contains(namefilter, System.StringComparison.OrdinalIgnoreCase) ||
+                                 s.LastName.Contains(namefilter, System.StringComparison.OrdinalIgnoreCase));
+      }
+
+      return await query.ToListAsync(ct);
+    }
+
     public async Task<RoboFanEntity> GetByIdAsync(int id, CancellationToken ct = default(CancellationToken))
     {
       // build up query to also load the child objects

@@ -11,7 +11,6 @@ using RoboFan.Domain.Converters;
 using RoboFan.Domain.Repositories;
 using RoboFan.Domain.ViewModels;
 using Serilog;
-//using Microsoft.AspnetCore.Http.Hoststring;
 
 namespace RoboFan.Web.Controllers
 {
@@ -37,19 +36,37 @@ namespace RoboFan.Web.Controllers
     {
       try
       {
-        var hostpath = string.Format("{0}://{1}", Request.Scheme, Request.Host.ToString());
-        _log.Information("Get: HostPath[{0}]", hostpath);
-        //var rootpath = _hostingEnvironment.WebRootPath;
-        //_log.Information("Get: WebRootPath[{0}]", rootpath);
-        //var reqpath = this.Request.Path;
-        //_log.Information("Get: ReqPath[{0}]", reqpath);
-
         var listfans = await _roboFanRepository.GetAllAsync(ct);
         if (listfans == null)
         {
           return NotFound();
         }
 
+        var hostpath = string.Format("{0}://{1}", Request.Scheme, Request.Host.ToString());
+        _log.Information("Get: HostPath[{0}]", hostpath);
+        var listmodels = RoboFanConverter.ConvertList(listfans, hostpath);
+        return Ok(listmodels);
+      }
+      catch (Exception ex)
+      {
+        return StatusCode(500, ex);
+      }
+    }
+
+    [HttpGet("search")]
+    [Produces(typeof(List<RoboFanViewModel>))]
+    public async Task<IActionResult> Get(string namefilter="", CancellationToken ct = default)
+    {
+      try
+      {
+        var listfans = await _roboFanRepository.GetAllFilterAsync(namefilter, ct);
+        if (listfans == null)
+        {
+          return NotFound();
+        }
+
+        var hostpath = string.Format("{0}://{1}", Request.Scheme, Request.Host.ToString());
+        _log.Information("Get: HostPath[{0}]", hostpath);
         var listmodels = RoboFanConverter.ConvertList(listfans, hostpath);
         return Ok(listmodels);
       }

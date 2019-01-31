@@ -23,7 +23,7 @@ export class ApiMockService {
     this.baseUrl = baseUrl;
   }
 
-  getFansAll() : Observable<RoboFan[]> {
+  getFansAll(filter: string) : Observable<RoboFan[]> {
     return Observable.of(listfans.robofans);
   }
 

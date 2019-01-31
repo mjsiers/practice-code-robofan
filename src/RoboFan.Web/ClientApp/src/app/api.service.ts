@@ -1,6 +1,8 @@
 import { Injectable, Inject } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
+import { tap } from 'rxjs/operators';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
@@ -22,8 +24,16 @@ export class ApiService {
     this.baseUrl = baseUrl;
   }
 
-  getFansAll() : Observable<RoboFan[]> {
-    var url = this.baseUrl + 'api/robofan'
+  private refreshneeded = new Subject<RoboFan[]>();
+  getRefreshNeeded() {
+    return this.refreshneeded;
+  }
+
+  getFansAll(filter: string) : Observable<RoboFan[]> {
+    var url = this.baseUrl + 'api/robofan/search'
+    if (filter){
+      url = url + "?namefilter=" + filter;
+    }
     return this.http.get<RoboFan[]>(url);
   }
 
@@ -31,6 +41,11 @@ export class ApiService {
     var url = this.baseUrl + 'api/robofan/create'
     var body = JSON.stringify(fan);
     this.http.post(url, body, { headers: this.headers })
+      .pipe(
+        tap(() => {
+          this.getRefreshNeeded().next();
+        })
+      )
       .subscribe(res => {
         console.log(res);
       },
@@ -43,6 +58,11 @@ export class ApiService {
     var url = this.baseUrl + 'api/robofan/generate'
     var body = JSON.stringify(generate);
     this.http.post(url, body, { headers: this.headers })
+      .pipe(
+        tap(() => {
+          this.getRefreshNeeded().next();
+        })
+      )
       .subscribe(res => {
         console.log(res);
       },

@@ -13,8 +13,12 @@ import { RoboFanDelay } from './robofan-delay';
 export class RoboFanDataService {
   constructor(private api: ApiService) { }
 
-  getFansAll() : Observable<RoboFan[]> {
-    return this.api.getFansAll();
+  getRefreshNeeded() {
+    return this.api.getRefreshNeeded();
+  }
+
+  getFansAll(filter: string) : Observable<RoboFan[]> {
+    return this.api.getFansAll(filter);
   }
 
   postCreate(fan: RoboFanCreate) {

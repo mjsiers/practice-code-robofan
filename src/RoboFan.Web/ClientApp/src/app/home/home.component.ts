@@ -23,18 +23,22 @@ export class HomeComponent implements OnInit {
   //dataSource : MyDataSource;
   //@ViewChild(MatPaginator) paginator: MatPaginator;
 
-  fans: RoboFan[];
 
+  fans: RoboFan[];
+  filter: string;
   constructor(private fanDataService: RoboFanDataService) { }
 
   ngOnInit() {
-    this.fanDataService
-      .getFansAll()
-      .subscribe(
-        (fans) => {
-          this.fans = fans;
-        }
-      );
+    // subscripe to the refresh needed stream
+    // this gets fired when new fans are created or filter chnaged
+    this.fanDataService.getRefreshNeeded()
+      .subscribe(() => {
+        // refetch the fans
+        this.fetchFans(this.filter);
+      });
+
+    // initialize by fetching once at init time
+    this.fetchFans(this.filter);
 
     ////this.fanDataService.getFansAll().subscribe(data =>  {
     ////  console.log(data);
@@ -43,6 +47,20 @@ export class HomeComponent implements OnInit {
     ////  this.database = new Database(data);
     ////  this.dataSource = new MyDataSource(this.database, this.paginator);
     ////});
+  }
+
+  private fetchFans(filter: string) {
+    this.fanDataService
+      .getFansAll(filter)
+      .subscribe((fans) => {
+        this.fans = fans;
+      });
+  }
+
+  search() {
+    // trigger the signal to reload the data using the filter
+    //this.fanDataService.getRefreshNeeded().next();
+    this.fetchFans(this.filter);
   }
 }
 
