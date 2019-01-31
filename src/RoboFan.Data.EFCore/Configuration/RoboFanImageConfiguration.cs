@@ -7,6 +7,7 @@ namespace RoboFan.Data.EFCore.Configuration
   {
     public RoboFanImageConfiguration(EntityTypeBuilder<RoboFanImage> entity)
     {
+      // adjust the default property settings
       entity.Property(e => e.ContentType).HasMaxLength(64).IsRequired();
     }
   }

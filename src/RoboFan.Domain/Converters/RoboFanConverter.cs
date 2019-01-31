@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using RoboFan.Domain.Entities;
 using RoboFan.Domain.ViewModels;
 
 namespace RoboFan.Domain.Converters
@@ -12,6 +11,7 @@ namespace RoboFan.Domain.Converters
     {
       List<RoboFanViewModel> listmodels = new List<RoboFanViewModel>();
 
+      // loop over all the fans and convert each one
       foreach (var fan in listfans)
       {
         var model = Convert(fan, hostpath);
@@ -23,6 +23,8 @@ namespace RoboFan.Domain.Converters
 
     public static RoboFanViewModel Convert(Entities.RoboFan robofan, string hostpath = null)
     {
+      // initialize a new fan view model
+      // todo: look into setting up AutoMapper?
       var model = new RoboFanViewModel();
       model.Id = robofan.Id;
       model.FirstName = robofan.FirstName;
@@ -33,10 +35,11 @@ namespace RoboFan.Domain.Converters
       model.TeamName = robofan.PrimaryTeam.Name;
       model.TeamImageUrl = robofan.PrimaryTeam.ImageUrl;
       model.ImageUrl = RoboFanImageConverter.ImageUrl(robofan.RoboFanImage, hostpath);
-
+  
       // update the team image path if specified
       if (!string.IsNullOrEmpty(hostpath))
       {
+        // for client the image path must be the full URL
         var filename = System.IO.Path.GetFileName(model.TeamImageUrl);
         model.TeamImageUrl = string.Format("{0}/images/teams/{1}", hostpath, filename);
       }
@@ -45,13 +48,13 @@ namespace RoboFan.Domain.Converters
       model.Age = GetAge(robofan.BirthDate, DateTime.Now);
       model.BirthDate = robofan.BirthDate?.Date.ToString("MM/dd/yyyy");
 
-      // execute query to get the positive ranked teams for this fan
+      // execute query to get the list of positive ranked teams for this fan
       model.PosTeams = (from ranking in robofan.FanRankings
                         where ((ranking.Ranking > 0) && (ranking.RobotFanId == robofan.Id))
                         orderby ranking.LeagueTeam.Name ascending
                         select ranking.LeagueTeam.Name).ToList<string>();
 
-      // execute query to get the negative ranked teams for this fan
+      // execute query to get the list of negative ranked teams for this fan
       model.NegTeams = (from ranking in robofan.FanRankings
                         where ((ranking.Ranking < 0) && (ranking.RobotFanId == robofan.Id))
                         orderby ranking.LeagueTeam.Name ascending

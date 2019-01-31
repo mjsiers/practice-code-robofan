@@ -1,11 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Microsoft.EntityFrameworkCore;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using RoboFan.Domain.Entities;
 using RoboFanEntity = RoboFan.Domain.Entities.RoboFan;
 using Bogus;
-using System.Threading.Tasks;
 
 namespace RoboFan.Data.Mock.Generators
 {

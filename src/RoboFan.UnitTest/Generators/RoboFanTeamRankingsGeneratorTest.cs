@@ -1,6 +1,5 @@
-﻿using Xunit;
-using RoboFan.Data.Mock.Generators;
-using System;
+﻿using RoboFan.Data.Mock.Generators;
+using Xunit;
 
 namespace RoboFan.UnitTest.Generators
 {

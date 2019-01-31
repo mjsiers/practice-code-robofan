@@ -84,8 +84,11 @@ namespace RoboFan.Data.Mock.Generators
 
     private static byte[] ReadImage(string path, string filetype="png")
     {
+      // generate a random index to use to select a specific robot image file
       Random randNum = new Random();
       var id = randNum.Next(MaxRobotId-1)+1;
+
+      // determine image file name and ensure it exists
       string filename = string.Format("robot-{0}.{1}", id, filetype);
       string filepath = System.IO.Path.Combine(path, filename);
       if (!System.IO.File.Exists(filepath)) {
@@ -98,8 +101,11 @@ namespace RoboFan.Data.Mock.Generators
 
     private static async Task<byte[]> ReadImageAsync(string path, string filetype = "png")
     {
+      // generate a random index to use to select a specific robot image file
       Random randNum = new Random();
       var id = randNum.Next(MaxRobotId - 1)+1;
+
+      // determine image file name and ensure it exists
       string filename = string.Format("robot-{0}.{1}", id, filetype);
       string filepath = System.IO.Path.Combine(path, filename);
       if (!System.IO.File.Exists(filepath))

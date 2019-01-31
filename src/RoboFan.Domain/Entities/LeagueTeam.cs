@@ -1,8 +1,4 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace RoboFan.Domain.Entities
 {
@@ -13,8 +9,6 @@ namespace RoboFan.Domain.Entities
     public string Name { get; set; }
     public string Conference { get; set; }
     public string ImageUrl { get; set; }
-    //public virtual ICollection<RoboFan> RobotFans { get; set; }
-    //public virtual ICollection<RoboFanTeamRanking> FanRankings { get; set; }
 
     public LeagueTeam()
     {
@@ -22,6 +16,7 @@ namespace RoboFan.Domain.Entities
 
     public LeagueTeam(int id, string name, string conference, string imageurl)
     {
+      // constructor that will initialize all the values
       this.Id = id;
       this.Name = name;
       this.Conference = conference;

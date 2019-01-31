@@ -1,6 +1,6 @@
-﻿using Xunit;
+﻿using System;
 using RoboFan.Data.Mock.Generators;
-using System;
+using Xunit;
 
 namespace RoboFan.UnitTest.Generators
 {
@@ -18,7 +18,6 @@ namespace RoboFan.UnitTest.Generators
       Assert.Equal(fanid, fanimage.RoboFanId);
       Assert.True(Guid.TryParse(fanimage.GuidId.ToString(), out guidResult));
       Assert.NotNull(fanimage.ContentType);
-      //Assert.NotNull(fanimage.ImageData);
     }
   }
 }

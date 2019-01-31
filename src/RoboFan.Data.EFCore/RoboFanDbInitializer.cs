@@ -25,8 +25,8 @@ namespace RoboFan.Data.EFCore
       var fanexist = await _ctx.RoboFan.AnyAsync();
       if (!fanexist)
       {
-        // no fans are in the database
-        // generate some new fans and save using the repository
+        // no fan records exist in the database
+        // generate some new fans and save them using the repository
         _log.Information("Seeding database with [{0}] new fans.", numfans);
         var repository = new RoboFanRepository(_ctx);
         var listfans = RoboFanGenerator.Generate(numfans, path, true);

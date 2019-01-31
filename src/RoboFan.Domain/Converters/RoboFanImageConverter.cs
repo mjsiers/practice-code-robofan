@@ -1,5 +1,4 @@
 ﻿using RoboFan.Domain.Entities;
-using RoboFan.Domain.ViewModels;
 
 namespace RoboFan.Domain.Converters
 {
@@ -9,11 +8,14 @@ namespace RoboFan.Domain.Converters
     {
       string imageurl;
 
+      // determine if the hostpath was specified
       if (!string.IsNullOrEmpty(hostpath))
       {
+        // build up a full URL path for the image
         imageurl = string.Format("{0}/api/robofan/{1}/image", hostpath, fanimage.Id);
       }
       else {
+        // build up a relative path for the image
         imageurl = string.Format("~/api/robofan/{0}/image", fanimage.Id);
       }
 

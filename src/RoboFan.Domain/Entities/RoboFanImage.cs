@@ -1,8 +1,5 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Collections.Generic;
-using System.Text;
 
 namespace RoboFan.Domain.Entities
 {
@@ -17,6 +14,5 @@ namespace RoboFan.Domain.Entities
     public byte[] ImageData { get; set; }
 
     public int RoboFanId { get; set; }
-    //public virtual RoboFan RoboFan { get; set; }
   }
 }

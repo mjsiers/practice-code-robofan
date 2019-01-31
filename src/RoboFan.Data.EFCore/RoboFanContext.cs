@@ -1,17 +1,16 @@
-﻿using System.Threading;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using RoboFan.Domain.Entities;
 using RoboFan.Data.EFCore.Configuration;
 using RoboFanEntity = RoboFan.Domain.Entities.RoboFan;
 
+// link to some documentation on how to perform databasse migrations
+//https://docs.microsoft.com/en-us/ef/core/get-started/aspnetcore/new-db?tabs=visual-studio
+//  dotnet ef migrations add <name>
+//  dotnet ef migrations remove
+//  dotnet ef database update
+
 namespace RoboFan.Data.EFCore
 {
-  // link to documentation on how to perform migrations
-  //https://docs.microsoft.com/en-us/ef/core/get-started/aspnetcore/new-db?tabs=visual-studio
-  //  dotnet ef migrations add <name>
-  //  dotnet ef migrations remove
-  //  dotnet ef database update
-
   public class RoboFanContext : DbContext
   {
     public virtual DbSet<LeagueTeam> LeagueTeam { get; set; }
@@ -21,6 +20,8 @@ namespace RoboFan.Data.EFCore
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
+      // for now just use hard coded connection string
+      // todo: get this from the configuration file and ensure we support in memory databases for unit testing
       optionsBuilder.UseSqlite("Data Source=RoboFanDatabase.db");
     }
 
@@ -35,7 +36,6 @@ namespace RoboFan.Data.EFCore
       modelBuilder.Entity<RoboFanEntity>()
           .HasOne(a => a.RoboFanImage)
           .WithOne()
-          //.WithOne(b => b.RoboFan)
           .HasForeignKey<RoboFanImage>(b => b.RoboFanId)
           .OnDelete(DeleteBehavior.Cascade);
      

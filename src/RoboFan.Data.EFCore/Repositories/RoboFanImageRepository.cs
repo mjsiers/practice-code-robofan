@@ -1,9 +1,5 @@
-﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Threading;
-using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore;
 using RoboFan.Domain.Repositories;
 using RoboFan.Domain.Entities;
 
@@ -18,7 +14,7 @@ namespace RoboFan.Data.EFCore.Repositories
       _context = context;
     }
 
-    public async Task<RoboFanImage> GetByIdAsync(int id, CancellationToken ct = default(CancellationToken))
+    public async Task<RoboFanImage> GetByIdAsync(int id, CancellationToken ct = default)
     {
       return await _context.RoboFanImage.FindAsync(id);
     }

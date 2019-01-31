@@ -18,7 +18,7 @@ namespace RoboFan.Data.EFCore.Repositories
       _context = context;
     }
 
-    public async Task<List<RoboFanEntity>> GetAllAsync(CancellationToken ct = default(CancellationToken))
+    public async Task<List<RoboFanEntity>> GetAllAsync(CancellationToken ct = default)
     {
       // build up query to also load the child objects
       var query = (from robofan in _context.RoboFan
@@ -27,15 +27,17 @@ namespace RoboFan.Data.EFCore.Repositories
       return await query;
     }
 
-    public async Task<List<RoboFanEntity>> GetAllFilterAsync(string namefilter, CancellationToken ct = default(CancellationToken))
+    public async Task<List<RoboFanEntity>> GetAllFilterAsync(string namefilter, CancellationToken ct = default)
     {
       // first query for all the records
       var query = (from robofan in _context.RoboFan
                    .Include("RoboFanImage").Include("PrimaryTeam").Include("FanRankings").Include("FanRankings.LeagueTeam")
                    select robofan);
+
+      // check to see if name filter was specified
       if (!string.IsNullOrEmpty(namefilter))
       {
-        // add in the specified name filter value
+        // update query to add in the name filter value
         query = query.Where(s => s.FirstName.Contains(namefilter, System.StringComparison.OrdinalIgnoreCase) ||
                                  s.LastName.Contains(namefilter, System.StringComparison.OrdinalIgnoreCase));
       }
@@ -43,7 +45,7 @@ namespace RoboFan.Data.EFCore.Repositories
       return await query.ToListAsync(ct);
     }
 
-    public async Task<RoboFanEntity> GetByIdAsync(int id, CancellationToken ct = default(CancellationToken))
+    public async Task<RoboFanEntity> GetByIdAsync(int id, CancellationToken ct = default)
     {
       // build up query to also load the child objects
       var query = (from robofan in _context.RoboFan
@@ -53,19 +55,19 @@ namespace RoboFan.Data.EFCore.Repositories
       return await query;
     }
 
-    public async Task<RoboFanEntity> AddAsync(RoboFanEntity newFan, CancellationToken ct = default(CancellationToken))
+    public async Task<RoboFanEntity> AddAsync(RoboFanEntity newFan, CancellationToken ct = default)
     {
       _context.RoboFan.Add(newFan);
       await _context.SaveChangesAsync(ct);
       return newFan;
     }
 
-    public async Task<bool> AddManyAsync(List<RoboFanEntity> listfans, CancellationToken ct = default(CancellationToken))
+    public async Task<bool> AddManyAsync(List<RoboFanEntity> listfans, CancellationToken ct = default)
     {
       // loop over all the generated fans
       foreach (var fan in listfans)
       {
-        // save off the fan ranking values since we cannot add them until we know the record id
+        // save off the fan ranking values since we cannot add them until we know the fan record id
         // also clear out the primary team since the record already exists in db
         var fanimage = fan.RoboFanImage;
         var fanrankings = fan.FanRankings;
@@ -74,6 +76,7 @@ namespace RoboFan.Data.EFCore.Repositories
         fan.PrimaryTeam = null;
 
         // add the fan and image records to the database
+        // if id value not zero then EF will get confused
         fan.Id = 0;
         _context.RoboFan.Add(fan);
         await _context.SaveChangesAsync(ct);
@@ -100,10 +103,13 @@ namespace RoboFan.Data.EFCore.Repositories
       return true;
     }
 
-    public async Task<bool> UpdateAsync(RoboFanEntity fan, CancellationToken ct = default(CancellationToken))
+    public async Task<bool> UpdateAsync(RoboFanEntity fan, CancellationToken ct = default)
     {
+      // ensure record exists
       if (!await RoboFanExists(fan.Id, ct))
         return false;
+
+      // update the record
       _context.RoboFan.Update(fan);
       await _context.SaveChangesAsync(ct);
       return true;
@@ -111,8 +117,11 @@ namespace RoboFan.Data.EFCore.Repositories
 
     public async Task<bool> DeleteAsync(int id, CancellationToken ct = default(CancellationToken))
     {
+      // ensure record exists
       if (!await RoboFanExists(id, ct))
         return false;
+      
+      // delete the record
       var toRemove = _context.RoboFan.Find(id);
       _context.RoboFan.Remove(toRemove);
       await _context.SaveChangesAsync(ct);

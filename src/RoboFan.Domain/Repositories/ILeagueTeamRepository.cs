@@ -6,12 +6,12 @@ using RoboFan.Domain.Entities;
 
 namespace RoboFan.Domain.Repositories
 {
-  public interface ILeagueTeamRepository
+  public interface ILeagueTeamRepository : IDisposable
   {
-    Task<List<LeagueTeam>> GetAllAsync(CancellationToken ct = default(CancellationToken));
-    Task<LeagueTeam> GetByIdAsync(int id, CancellationToken ct = default(CancellationToken));
-    Task<LeagueTeam> AddAsync(LeagueTeam newTeam, CancellationToken ct = default(CancellationToken));
-    Task<bool> UpdateAsync(LeagueTeam team, CancellationToken ct = default(CancellationToken));
-    Task<bool> DeleteAsync(int id, CancellationToken ct = default(CancellationToken));
+    Task<List<LeagueTeam>> GetAllAsync(CancellationToken ct = default);
+    Task<LeagueTeam> GetByIdAsync(int id, CancellationToken ct = default);
+    Task<LeagueTeam> AddAsync(LeagueTeam newTeam, CancellationToken ct = default);
+    Task<bool> UpdateAsync(LeagueTeam team, CancellationToken ct = default);
+    Task<bool> DeleteAsync(int id, CancellationToken ct = default);
   }
 }

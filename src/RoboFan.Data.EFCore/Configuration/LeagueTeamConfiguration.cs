@@ -2,13 +2,13 @@
 using RoboFan.Domain.Entities;
 using RoboFan.Data.Mock.Generators;
 
-
 namespace RoboFan.Data.EFCore.Configuration
 {
   public class LeagueTeamConfiguration
   {
     public LeagueTeamConfiguration(EntityTypeBuilder<LeagueTeam> entity)
     {
+      // adjust the default property settings
       entity.Property(e => e.Name).HasMaxLength(64).IsRequired();
       entity.Property(e => e.Conference).HasMaxLength(64).IsRequired();
       entity.Property(e => e.ImageUrl).HasMaxLength(128).IsRequired();

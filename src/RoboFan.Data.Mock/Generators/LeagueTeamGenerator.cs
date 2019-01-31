@@ -1,7 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using RoboFan.Domain.Entities;
 
 namespace RoboFan.Data.Mock.Generators
@@ -13,6 +10,7 @@ namespace RoboFan.Data.Mock.Generators
       List<LeagueTeam> listteams = new List<LeagueTeam>();
 
       // since this information is mainly static going to just use real values in the generator
+      // todo: probably better to support reading this data in from the CSV file
       listteams.Add(new LeagueTeam(1, "Atlanta United FC", "Eastern", "~/images/teams/atlantaunitedfc.gif"));
       listteams.Add(new LeagueTeam(2, "Chicago Fire", "Eastern", "~/images/teams/chicagofire.gif"));
       listteams.Add(new LeagueTeam(3, "Colorado Rapids", "Western", "~/images/teams/coloradorapids.gif"));

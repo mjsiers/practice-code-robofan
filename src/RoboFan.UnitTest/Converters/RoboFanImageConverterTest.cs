@@ -1,5 +1,4 @@
-﻿using System;
-using RoboFan.Data.Mock.Generators;
+﻿using RoboFan.Data.Mock.Generators;
 using RoboFan.Domain.Converters;
 using Xunit;
 

@@ -1,7 +1,7 @@
 ﻿using System;
-using Xunit;
 using RoboFan.Domain.Converters;
 using RoboFan.Data.Mock.Generators;
+using Xunit;
 
 namespace RoboFan.UnitTest.Converters
 {
