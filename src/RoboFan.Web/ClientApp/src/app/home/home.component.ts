@@ -23,21 +23,23 @@ export class HomeComponent implements OnInit {
       });
 
     // initialize by fetching once at init time
-    this.fetchFans(this.filter, false);
+    // must be done in timeout to prevent an angular exception
+    setTimeout(() => {
+      this.fetchFans(this.filter);
+    });
   }
 
-  private fetchFans(filter: string, spin:boolean = true) {
-    if (spin) {
-      this.ui.spin$.next(true);
-    }
-
+  private fetchFans(filter: string) {
+    this.ui.spin$.next(true);
     this.fanDataService
       .getFansAll(filter)
       .subscribe((fans) => {
         this.fans = fans;
-        if (spin) {
-          this.ui.spin$.next(false);
-        }
+        this.ui.spin$.next(false);
+      },
+      err => {
+        this.ui.spin$.next(false);
+        console.log("Error occured");
       });
   }
 

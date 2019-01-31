@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using RoboFan.Data.Mock.Generators;
 using RoboFan.Domain.Converters;
@@ -37,14 +35,19 @@ namespace RoboFan.Web.Controllers
     {
       try
       {
+        // fetch all the records
+        // todo: support paging
         var listfans = await _roboFanRepository.GetAllAsync(ct);
         if (listfans == null)
         {
           return NotFound();
         }
 
+        // determine the full host URL string
         var hostpath = string.Format("{0}://{1}", Request.Scheme, Request.Host.ToString());
         _log.Information("Get: HostPath[{0}]", hostpath);
+
+        // convert records into the correct format for the client
         var listmodels = RoboFanConverter.ConvertList(listfans, hostpath);
         return Ok(listmodels);
       }
@@ -60,14 +63,19 @@ namespace RoboFan.Web.Controllers
     {
       try
       {
+        // fetch all the records
+        // todo: support paging
         var listfans = await _roboFanRepository.GetAllFilterAsync(namefilter, ct);
         if (listfans == null)
         {
           return NotFound();
         }
 
+        // determine the full host URL string
         var hostpath = string.Format("{0}://{1}", Request.Scheme, Request.Host.ToString());
         _log.Information("Get: HostPath[{0}]", hostpath);
+
+        // convert records into the correct format for the client
         var listmodels = RoboFanConverter.ConvertList(listfans, hostpath);
         return Ok(listmodels);
       }
@@ -83,12 +91,14 @@ namespace RoboFan.Web.Controllers
     {
       try
       {
+        // get the specified record
         var robofan = await _roboFanRepository.GetByIdAsync(id, ct);
         if (robofan == null)
         {
           return NotFound();
         }
 
+        // convert record into the correct format for the client
         var model = RoboFanConverter.Convert(robofan);
         return Ok(model);
       }
@@ -103,6 +113,7 @@ namespace RoboFan.Web.Controllers
     {
       try
       {
+        // get the specified record
         var fanimage = await _roboFanImageRepository.GetByIdAsync(id, ct);
         if (fanimage == null)
         {
@@ -123,11 +134,13 @@ namespace RoboFan.Web.Controllers
     {
       try
       {
+        // determine the robot image path
         _log.Information("PostCreate: [{0} {1}]", create.FirstName, create.LastName);
         var rootpath = _hostingEnvironment.WebRootPath;
         var robopath = System.IO.Path.Combine(rootpath, "images/robots");
 
         // generate a random fan and overide values received from this post request
+        // todo: look into setting up automapper?
         var listfans = await RoboFanGenerator.GenerateAsync(1, robopath, true);
         if (!string.IsNullOrEmpty(create.FirstName))
         {
@@ -165,10 +178,12 @@ namespace RoboFan.Web.Controllers
     {
       try
       {
+        // ensure input values are valid
         _log.Information("PostGenerate: [{0}]", generate.Num);
         if ((generate.Num <= 0) || (generate.Num > 10))
           return BadRequest();
 
+        // determine the robot image path and generate the requested number of fans
         var rootpath = _hostingEnvironment.WebRootPath;
         var robopath = System.IO.Path.Combine(rootpath, "images/robots");
         var listfans = await RoboFanGenerator.GenerateAsync(generate.Num, robopath, true);
@@ -186,6 +201,7 @@ namespace RoboFan.Web.Controllers
     {
       try
       {
+        // ensure input values are valid
         _log.Information("PostDelay: [min:{0} max:{1}]", delay.Min, delay.Max);
         if ((delay.Min < 0) || (delay.Max <  0))
         {
@@ -204,6 +220,7 @@ namespace RoboFan.Web.Controllers
         }
 
         // update the response delay values
+        // todo: provide a way for the client to query and get the current delay values
         DelayResponseFilter.SetResponseDelay(delay.Min, delay.Max);
         return Ok();
       }

@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using RoboFanEntity = RoboFan.Domain.Entities.RoboFan;
+using System.ComponentModel.DataAnnotations;
 
 namespace RoboFan.Domain.Entities
 {

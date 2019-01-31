@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Threading;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
@@ -17,24 +16,24 @@ namespace RoboFan.Data.EFCore.Repositories
       _context = context;
     }
 
-    public async Task<List<LeagueTeam>> GetAllAsync(CancellationToken ct = default(CancellationToken))
+    public async Task<List<LeagueTeam>> GetAllAsync(CancellationToken ct = default)
     {
       return await _context.LeagueTeam.ToListAsync(ct);
     }
 
-    public async Task<LeagueTeam> GetByIdAsync(int id, CancellationToken ct = default(CancellationToken))
+    public async Task<LeagueTeam> GetByIdAsync(int id, CancellationToken ct = default)
     {
       return await _context.LeagueTeam.FindAsync(id);
     }
 
-    public async Task<LeagueTeam> AddAsync(LeagueTeam newTeam, CancellationToken ct = default(CancellationToken))
+    public async Task<LeagueTeam> AddAsync(LeagueTeam newTeam, CancellationToken ct = default)
     {
       _context.LeagueTeam.Add(newTeam);
       await _context.SaveChangesAsync(ct);
       return newTeam;
     }
 
-    public async Task<bool> UpdateAsync(LeagueTeam team, CancellationToken ct = default(CancellationToken))
+    public async Task<bool> UpdateAsync(LeagueTeam team, CancellationToken ct = default)
     {
       if (!await LeagueTeamExists(team.Id, ct))
         return false;
@@ -43,7 +42,7 @@ namespace RoboFan.Data.EFCore.Repositories
       return true;
     }
 
-    public async Task<bool> DeleteAsync(int id, CancellationToken ct = default(CancellationToken))
+    public async Task<bool> DeleteAsync(int id, CancellationToken ct = default)
     {
       if (!await LeagueTeamExists(id, ct))
         return false;
@@ -58,7 +57,7 @@ namespace RoboFan.Data.EFCore.Repositories
       _context.Dispose();
     }
 
-    private async Task<bool> LeagueTeamExists(int id, CancellationToken ct = default(CancellationToken))
+    private async Task<bool> LeagueTeamExists(int id, CancellationToken ct = default)
     {
       return await GetByIdAsync(id, ct) != null;
     }

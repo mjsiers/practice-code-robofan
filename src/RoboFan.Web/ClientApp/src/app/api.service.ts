@@ -63,7 +63,6 @@ export class ApiService {
     var body = JSON.stringify(delay);
     this.http.post(url, body, { headers: this.headers })
       .subscribe(res => {
-        console.log(res);
       },
       err => {
         console.log("Error occured");

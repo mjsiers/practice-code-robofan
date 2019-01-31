@@ -14,7 +14,7 @@ import { ApiService } from './api.service';
 import { ApiMockService } from './api-mock.service';
 import { RoboFanDataService } from './robofan-data.service';
 import { HomeComponent } from './home/home.component';
-import { FancardComponent } from './fancard/fancard.component';
+import { HomeFancardComponent } from './home-fancard/home-fancard.component';
 import { SettingsComponent } from './settings/settings.component';
 import { SettingsDelayComponent } from './settings-delay/settings-delay.component';
 import { SettingsCreateComponent } from './settings-create/settings-create.component';
@@ -30,7 +30,7 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     HomeComponent,
-    FancardComponent,
+    HomeFancardComponent,
     SettingsComponent,
     SettingsDelayComponent,
     SettingsCreateComponent,
