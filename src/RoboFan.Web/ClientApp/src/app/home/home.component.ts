@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { PageEvent, MatPaginator } from '@angular/material';
+import { OverlayModule } from '@angular/cdk/overlay'
 import { DataSource } from '@angular/cdk/collections';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
@@ -7,6 +8,7 @@ import { map } from 'rxjs/operators';
 import 'rxjs/add/observable/merge';
 import { RoboFanDataService } from '../robofan-data.service';
 import { RoboFan } from '../robofan';
+import { UiService } from '../ui.service';
 
 @Component({
   selector: 'app-home',
@@ -23,10 +25,9 @@ export class HomeComponent implements OnInit {
   //dataSource : MyDataSource;
   //@ViewChild(MatPaginator) paginator: MatPaginator;
 
-
   fans: RoboFan[];
   filter: string;
-  constructor(private fanDataService: RoboFanDataService) { }
+  constructor(private fanDataService: RoboFanDataService, private ui: UiService) { }
 
   ngOnInit() {
     // subscripe to the refresh needed stream
@@ -50,10 +51,12 @@ export class HomeComponent implements OnInit {
   }
 
   private fetchFans(filter: string) {
+    this.ui.spin$.next(true);
     this.fanDataService
       .getFansAll(filter)
       .subscribe((fans) => {
         this.fans = fans;
+        this.ui.spin$.next(false);
       });
   }
 

@@ -6,6 +6,8 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { RouterModule, Routes } from '@angular/router';
+import { OverlayModule } from '@angular/cdk/overlay'
+import { MatSpinner } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { ApiService } from './api.service';
@@ -41,10 +43,12 @@ const routes: Routes = [
     HttpClientModule,
     FormsModule,
     FlexLayoutModule,
+    OverlayModule,
     AppMaterialModule,
     RouterModule.forRoot(routes)
   ],
   providers: [ApiService, ApiMockService, RoboFanDataService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [ MatSpinner ]
 })
 export class AppModule { }
