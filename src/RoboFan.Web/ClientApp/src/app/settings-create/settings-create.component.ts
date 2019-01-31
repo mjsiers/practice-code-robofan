@@ -8,6 +8,7 @@ import { RoboFanCreate } from '../robofan-create';
   styleUrls: ['./settings-create.component.css']
 })
 export class SettingsCreateComponent implements OnInit {
+  isDisabled = false;
   fan = new RoboFanCreate();
   constructor(private fanDataService: RoboFanDataService) { }
 
@@ -15,6 +16,14 @@ export class SettingsCreateComponent implements OnInit {
   }
 
   onSubmit() {
-    this.fanDataService.postCreate(this.fan);
+    this.isDisabled = true;
+    this.fanDataService.postCreate(this.fan)
+      .subscribe(res => {
+        this.isDisabled = false;
+      },
+      err => {
+        console.log("Error occured");
+        this.isDisabled = false;
+      });
   }
 }

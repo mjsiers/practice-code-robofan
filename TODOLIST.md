@@ -13,7 +13,6 @@
 - [X] Add unit test for computation of age from birthdate value
 - [x] Add code and unit tests to be able to generate fake/mock data for the data entities
 - [ ] Write unit tests for fetching images and saving/retrieving from database
-- [ ] Generate a larger sample JSON files for client based UI development
 - [X] Pre-generate some of the robot images using python to improve web app performance
 - [X] Add in server logging framework
 - [X] Add code to seed the database tables with random data (currently only 1 robo fan when database is created)
@@ -32,7 +31,7 @@
 - [X] Update application to use data from actual web service
 - [X] Remove mocked data and image assets from the client app directory
 - [ ] Add in support for scrolling/paging the list of cards
-- [ ] Add in overlay for slow responses
+- [X] Add in overlay spinner for slow responses
 - [ ] Add in settings form validation
 
 ### Final Items

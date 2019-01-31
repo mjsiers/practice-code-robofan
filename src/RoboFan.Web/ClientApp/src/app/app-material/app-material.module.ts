@@ -9,6 +9,7 @@ import {
   MatTabsModule,
   MatInputModule,
   MatButtonModule,
+  MatProgressSpinnerModule,
   MatPaginatorModule
 } from '@angular/material';
 
@@ -24,6 +25,7 @@ import {
     MatTabsModule,
     MatInputModule,
     MatButtonModule,
+    MatProgressSpinnerModule,
     MatPaginatorModule
   ],
   exports: [
@@ -35,6 +37,7 @@ import {
     MatTabsModule,
     MatInputModule,
     MatButtonModule,
+    MatProgressSpinnerModule,
     MatPaginatorModule
   ]
 })

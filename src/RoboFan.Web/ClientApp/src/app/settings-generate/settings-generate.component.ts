@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RoboFanDataService } from '../robofan-data.service';
 import { RoboFanGenerate } from '../robofan-generate';
+import { UiService } from '../ui.service';
 
 @Component({
   selector: 'app-settings-generate',
@@ -8,6 +9,7 @@ import { RoboFanGenerate } from '../robofan-generate';
   styleUrls: ['./settings-generate.component.css']
 })
 export class SettingsGenerateComponent implements OnInit {
+  isDisabled = false;
   generate = new RoboFanGenerate();
   constructor(private fanDataService: RoboFanDataService) { }
 
@@ -15,6 +17,14 @@ export class SettingsGenerateComponent implements OnInit {
   }
 
   onSubmit() {
-    this.fanDataService.postGenerate(this.generate);
+    this.isDisabled = true;
+    this.fanDataService.postGenerate(this.generate)
+      .subscribe(res => {
+        this.isDisabled = false;
+      },
+      err => {
+        console.log("Error occured");
+        this.isDisabled = false;
+      });
   }
 }

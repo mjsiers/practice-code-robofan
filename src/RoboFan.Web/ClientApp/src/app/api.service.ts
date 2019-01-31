@@ -40,35 +40,22 @@ export class ApiService {
   postCreate(fan: RoboFanCreate) {
     var url = this.baseUrl + 'api/robofan/create'
     var body = JSON.stringify(fan);
-    this.http.post(url, body, { headers: this.headers })
-      .pipe(
-        tap(() => {
-          this.getRefreshNeeded().next();
+    return this.http.post(url, body, { headers: this.headers })
+      .pipe(tap(() => {
+          //this.getRefreshNeeded().next();
         })
-      )
-      .subscribe(res => {
-        console.log(res);
-      },
-      err => {
-        console.log("Error occured");
-      });
+      );
   }
 
   postGenerate(generate: RoboFanGenerate) {
     var url = this.baseUrl + 'api/robofan/generate'
     var body = JSON.stringify(generate);
-    this.http.post(url, body, { headers: this.headers })
-      .pipe(
-        tap(() => {
-          this.getRefreshNeeded().next();
-        })
-      )
-      .subscribe(res => {
-        console.log(res);
-      },
-      err => {
-        console.log("Error occured");
-      });
+    return this.http.post(url, body, { headers: this.headers })
+            .pipe(
+              tap(() => {
+                //this.getRefreshNeeded().next();
+              })
+            );
   }
 
   postDelay(delay: RoboFanDelay) {
@@ -82,21 +69,4 @@ export class ApiService {
         console.log("Error occured");
       });
   }
-
-  //public get() {
-    // Get all jogging data
-    //return this.http.get(this.accessPointUrl, { headers: this.headers });
-  //}
-
-  //public add(payload) {
-    //return this.http.post(this.accessPointUrl, payload, { headers: this.headers });
-  //}
-
-  //public remove(payload) {
-    //return this.http.delete(this.accessPointUrl + '/' + payload.id, { headers: this.headers });
-  //}
-
-  //public update(payload) {
-    //return this.http.put(this.accessPointUrl + '/' + payload.id, payload, { headers: this.headers });
-  //}
 }
