@@ -2,6 +2,7 @@
 using System.Net;
 using System.Threading.Tasks;
 using RoboFan.Domain.Entities;
+using Serilog;
 
 namespace RoboFan.Data.Mock.Generators
 {
@@ -88,6 +89,7 @@ namespace RoboFan.Data.Mock.Generators
       string filename = string.Format("robot-{0}.{1}", id, filetype);
       string filepath = System.IO.Path.Combine(path, filename);
       if (!System.IO.File.Exists(filepath)) {
+        Log.Warning("Robot image file does not exist [{0}]", filepath);
         return null;
       }
 
@@ -102,6 +104,7 @@ namespace RoboFan.Data.Mock.Generators
       string filepath = System.IO.Path.Combine(path, filename);
       if (!System.IO.File.Exists(filepath))
       {
+        Log.Warning("Robot image file does not exist [{0}]", filepath);
         return null;
       }
 

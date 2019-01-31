@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Serilog;
+using RoboFan.Data.EFCore.Repositories;
 using RoboFan.Data.Mock.Generators;
+using Serilog;
 
 namespace RoboFan.Data.EFCore
 {
@@ -14,41 +15,22 @@ namespace RoboFan.Data.EFCore
       _ctx = ctx;
     }
 
-    public async void Seed(string path)
+    public async void Seed(string path, int numfans = 3)
     {
       // ensure the database exists and is upto to date first
       _log.Information("Migrating database (if needed).");
       _ctx.Database.Migrate();
 
       // ensure we have at least one fan record
-      var fansexist = await _ctx.RoboFan.AnyAsync();
-      if (!fansexist)
+      var fanexist = await _ctx.RoboFan.AnyAsync();
+      if (!fanexist)
       {
-        _log.Information("Generating new RoboFan records.");
-        var listfans = RoboFanGenerator.Generate(1, path, true);
-        foreach (var fan in listfans)
-        {
-          // save off the fan ranking values since we cannot add them until we know the record id
-          // also clear out the primary team since the record already exists in db
-          var fanrankings = fan.FanRankings;
-          fan.FanRankings = null;
-          fan.PrimaryTeam = null;
-
-          // add the fan and image records to the database
-          _ctx.RoboFan.Add(fan);
-          foreach (var ranking in fanrankings)
-          {
-            // ensure the objects are null and ids are correct
-            ranking.LeagueTeam = null;
-            ranking.RobotFanId = fan.Id;
-
-            // save the ranking record
-            _ctx.RoboFanTeamRanking.Add(ranking);
-          }
-
-          // commit all the updates to the database
-          _ctx.SaveChanges();
-        }
+        // no fans are in the database
+        // generate some new fans and save using the repository
+        _log.Information("Seeding database with [{0}] new fans.", numfans);
+        var repository = new RoboFanRepository(_ctx);
+        var listfans = RoboFanGenerator.Generate(numfans, path, true);
+        var status = await repository.AddManyAsync(listfans);
       }
     }
   }
