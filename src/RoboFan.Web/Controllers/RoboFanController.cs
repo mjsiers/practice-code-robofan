@@ -10,6 +10,7 @@ using RoboFan.Data.Mock.Generators;
 using RoboFan.Domain.Converters;
 using RoboFan.Domain.Repositories;
 using RoboFan.Domain.ViewModels;
+using RoboFan.Web.Filters;
 using Serilog;
 
 namespace RoboFan.Web.Controllers
@@ -202,9 +203,9 @@ namespace RoboFan.Web.Controllers
           return BadRequest();
         }
 
-        //var listfans = await RoboFanGenerator.GenerateAsync(generate.Num);
-        //var status = await _roboFanRepository.AddManyAsync(listfans, ct);
-        return StatusCode(201);
+        // update the response delay values
+        DelayResponseFilter.SetResponseDelay(delay.Min, delay.Max);
+        return Ok();
       }
       catch (Exception ex)
       {

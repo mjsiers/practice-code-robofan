@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using RoboFan.Domain.Repositories;
 using RoboFan.Data.EFCore;
 using RoboFan.Data.EFCore.Repositories;
+using RoboFan.Web.Filters;
 
 namespace RoboFan.Web
 {
@@ -23,7 +24,11 @@ namespace RoboFan.Web
     // This method gets called by the runtime. Use this method to add services to the container.
     public void ConfigureServices(IServiceCollection services)
     {
-      services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+      services.AddMvc(options =>
+      {
+        // add in the delay response filter
+        options.Filters.Add(new DelayResponseFilter());
+      }).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
       // add in the sqlite database context, initializer, and repositories
       services.AddEntityFrameworkSqlite().AddDbContext<RoboFanContext>();

@@ -17,8 +17,8 @@
 - [X] Pre-generate some of the robot images using python to improve web app performance
 - [X] Add in server logging framework
 - [X] Add code to seed the database tables with random data (currently only 1 robo fan when database is created)
-- [ ] Implement REST API controller for fans (**images**, **cards**, **creating**, **generating**, delay)
-- [ ] Add in middleware to simulate slower response times
+- [X] Implement REST API controller for fans (**images**, **search**, **creating**, **generating**, **delay**)
+- [X] Add in middleware to simulate slower response times
 
 ### Angular Frontend
 
