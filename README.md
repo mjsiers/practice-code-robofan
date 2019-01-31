@@ -20,7 +20,7 @@ The purpose this learning project is to build a web application that can satisfy
 - A Web Application using WebAPI and a front-end JavaScript framework (e.g., Angular, AngularJS, React, Aurelia, etc.) 
     - [X] .NET Core ASP.NET Web Application using Angular.   
 - Use an ORM framework to talk to the database.
-    - [X] Entity Framework for .NET Core using SQLite Database.   
+    - [X] Entity Framework for .NET Core using Code First and SQLite Database.   
 - Unit Tests for appropriate parts of the application.
     - [X] XUnit testing framework.   
 
