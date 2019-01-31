@@ -1,0 +1,5 @@
+certifi==2018.11.29
+Pillow==5.4.1
+robohash==1.0
+tornado==5.1.1
+wincertstore==0.2
