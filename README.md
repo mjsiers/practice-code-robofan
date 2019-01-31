@@ -14,7 +14,7 @@ The purpose this learning project is to build a web application that can satisfy
     - [X] Users can create a single record specifying the name values on the Settings/Create tab. 
     - [X] Users can generate more random records from the Settings/Generate tab.              
 - Simulate search being slow and have the UI gracefully handle the delay.
-    - [X] Users can adjust the response delay values on the [Settings/Delay](./screenshots/RoboFanDelay.png) tab.   
+    - [X] Users can adjust the response delay values on the Settings/Delay tab.   
 
 ## Technical Requirements
 - A Web Application using WebAPI and a front-end JavaScript framework (e.g., Angular, AngularJS, React, Aurelia, etc.) 
