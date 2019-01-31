@@ -1,13 +1,13 @@
 
 <div class="form-div">
   <mat-form-field class="search-form" style="width:60%;padding:20px">
-    <input matInput placeholder="Search Names" type="text">
+    <input matInput placeholder="Search Names" type="text" id="filter" [(ngModel)]="filter" name="filter" >
   </mat-form-field>
-  <button button="submit" mat-raised-button color="primary">Search</button>
+  <button button="submit" mat-raised-button color="primary" (click)="search()">Search</button>
   <br>
 </div>
 
-<section class="main" *ngIf="fans.length > 0">
+<section class="main">
   <ul class="fanlist">
     <li *ngFor="let fan of fans">
       <app-fancard [fan]="fan"></app-fancard>

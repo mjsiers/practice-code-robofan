@@ -12,11 +12,11 @@ import { ApiService } from './api.service';
 import { ApiMockService } from './api-mock.service';
 import { RoboFanDataService } from './robofan-data.service';
 import { HomeComponent } from './home/home.component';
-import { SettingsComponent } from './settings/settings.component';
 import { FancardComponent } from './fancard/fancard.component';
-import { FanGeneratorComponent } from './fan-generator/fan-generator.component';
-import { FanFormComponent } from './fan-form/fan-form.component';
+import { SettingsComponent } from './settings/settings.component';
 import { SettingsDelayComponent } from './settings-delay/settings-delay.component';
+import { SettingsCreateComponent } from './settings-create/settings-create.component';
+import { SettingsGenerateComponent } from './settings-generate/settings-generate.component';
 
 
 const routes: Routes = [
@@ -28,11 +28,11 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     HomeComponent,
-    SettingsComponent,
     FancardComponent,
-    FanGeneratorComponent,
-    FanFormComponent,
-    SettingsDelayComponent
+    SettingsComponent,
+    SettingsDelayComponent,
+    SettingsCreateComponent,
+    SettingsGenerateComponent
   ],
   imports: [
     //BrowserModule,

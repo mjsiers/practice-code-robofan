@@ -13,9 +13,8 @@ namespace RoboFan.Domain.Entities
     public string Name { get; set; }
     public string Conference { get; set; }
     public string ImageUrl { get; set; }
-
-    public virtual ICollection<RoboFan> RobotFans { get; set; }
-    public virtual ICollection<RoboFanTeamRanking> FanRankings { get; set; }
+    //public virtual ICollection<RoboFan> RobotFans { get; set; }
+    //public virtual ICollection<RoboFanTeamRanking> FanRankings { get; set; }
 
     public LeagueTeam()
     {

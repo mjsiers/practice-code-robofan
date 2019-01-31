@@ -1,17 +1,17 @@
 export class RoboFan {
   id: number;
-  firstname: string;
-  lastname: string;
+  firstName: string;
+  lastName: string;
   address: string;
   city: string;
   state: string;
-  birthdate: Date;
+  birthDate: Date;
   age: number;
-  fanimageurl: string;
-  teamname: string;
-  teamimageurl: string;
-  posteams: string[] = [];
-  negteams: string[] = [];
+  imageUrl: string;
+  teamName: string;
+  teamImageUrl: string;
+  posTeams: string[] = [];
+  negTeams: string[] = [];
 
   constructor(values: Object = {}) {
     Object.assign(this, values);

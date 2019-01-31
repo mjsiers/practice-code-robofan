@@ -2,19 +2,99 @@
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using RoboFan.Domain.Entities;
 using RoboFanEntity = RoboFan.Domain.Entities.RoboFan;
 using Bogus;
+using System.Threading.Tasks;
 
 namespace RoboFan.Data.Mock.Generators
 {
   public static class RoboFanGenerator
   {
+    public static async Task<List<RoboFanEntity>> GenerateAsync(int num, string imagepath, bool generateRankings = true)
+    {
+      // generate teams and fans
+      var listteams = LeagueTeamGenerator.Generate();
+      List<RoboFanEntity> listitems = GenerateFans(num, listteams);
+
+      // loop through all the generated items
+      foreach (var fan in listitems)
+      {
+        // update the fanid and generate child entities if specified
+        fan.RoboFanImage = await RoboFanImageGenerator.GenerateAsync(fan.Id, imagepath);
+        if (generateRankings)
+        {
+          fan.FanRankings = RoboFanTeamRankingsGenerator.GenerateTeamRankings(fan, listteams);
+        }
+      }
+
+      return listitems;
+    }
+
+    public static List<RoboFanEntity> Generate(int num, string imagepath, bool generateRankings = true)
+    {
+      // generate teams and fans
+      var listteams = LeagueTeamGenerator.Generate();
+      List<RoboFanEntity> listitems = GenerateFans(num, listteams);
+
+      // loop through all the generated items
+      foreach (var fan in listitems)
+      {
+        // update the fanid and generate child entities if specified
+        fan.RoboFanImage = RoboFanImageGenerator.Generate(fan.Id, imagepath);
+        if (generateRankings)
+        {
+          fan.FanRankings = RoboFanTeamRankingsGenerator.GenerateTeamRankings(fan, listteams);
+        }
+      }
+
+      return listitems;
+    }
+
+    public static async Task<List<RoboFanEntity>> GenerateAsync(int num = 1, bool generateImage = true, bool generateRankings = true)
+    {
+      // generate teams and fans
+      var listteams = LeagueTeamGenerator.Generate();
+      List<RoboFanEntity> listitems = GenerateFans(num, listteams);
+
+      // loop through all the generated items
+      foreach (var fan in listitems)
+      {
+        // update the fanid and generate child entities if specified
+        fan.RoboFanImage = await RoboFanImageGenerator.GenerateAsync(fan.Id, generateImage);
+        if (generateRankings)
+        {
+          fan.FanRankings = RoboFanTeamRankingsGenerator.GenerateTeamRankings(fan, listteams);
+        }
+      }
+
+      return listitems;
+    }
+
     public static List<RoboFanEntity> Generate(int num = 1, bool generateImage = true, bool generateRankings = true)
     {
-      // generate list of teams and single robo fan
+      // generate teams and fans
+      var listteams = LeagueTeamGenerator.Generate();
+      List<RoboFanEntity> listitems = GenerateFans(num, listteams);
+
+      // loop through all the generated items
+      foreach (var fan in listitems)
+      {
+        // update the fanid and generate child entities if specified
+        fan.RoboFanImage = RoboFanImageGenerator.Generate(fan.Id, generateImage);
+        if (generateRankings)
+        {
+          fan.FanRankings = RoboFanTeamRankingsGenerator.GenerateTeamRankings(fan, listteams);
+        }
+      }
+
+      return listitems;
+    }
+
+    private static List<RoboFanEntity> GenerateFans(int num, List<LeagueTeam> listteams)
+    {
       Random randNum = new Random();
       List<RoboFanEntity> listitems = new List<RoboFanEntity>();
-      var listteams = LeagueTeamGenerator.Generate();
 
       // generate random values for the majority of the fan properties
       DateTime mindate = DateTime.Now.AddYears(-5);
@@ -27,7 +107,7 @@ namespace RoboFan.Data.Mock.Generators
           .RuleFor(o => o.BirthDate, f => f.Date.Past(50, mindate));
       listitems = faker.Generate(num);
 
-      // loop through all the generated items
+      // loop through all the generated fans
       var fanid = 1;
       foreach (var fan in listitems)
       {
@@ -36,13 +116,6 @@ namespace RoboFan.Data.Mock.Generators
         fan.Id = fanid;
         fan.PrimaryTeamId = listteams[teampos].Id;
         fan.PrimaryTeam = listteams[teampos];
-
-        // update the fanid and generate child entities if specified
-        fan.RoboFanImage = RoboFanImageGenerator.Generate(fan.Id, generateImage);
-        if (generateRankings)
-        {
-          fan.FanRankings = RoboFanTeamRankingsGenerator.GenerateTeamRankings(fan, listteams);
-        }
 
         // increment the fan id value
         fanid++;

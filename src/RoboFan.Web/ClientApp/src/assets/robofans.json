@@ -1,36 +1,4 @@
 {
   "robofans": [
-  {
-    "id": 1,
-	  "guid": "D74ECF80-628D-4D21-B317-8A4706E874C5",
-	  "firstname": "Aaa",
-	  "lastname": "Bbb",
-	  "address": "123 United Way",
-	  "city": "Minneapolis",
-	  "state": "MN",
-	  "birthdate": "01/01/1994",
-	  "age": 25,
-	  "fanimageurl": "../../assets/images/robots/D74ECF80-628D-4D21-B317-8A4706E874C5.png",
-	  "teamname": "Minnesota United",
-	  "teamimageurl": "../../assets/images/teams/minnesotaunitedfc.gif",
-	  "posteams": ["D.C. United"],
-	  "negteams": ["Chicago Fire", "LA Galaxy", "Atlanta United FC"]
-	},
-  {
-    "id": 2,
-	  "guid": "5849DA03-1FB5-497E-BEC5-E74AF67CB837",
-	  "firstname": "Bbb",
-	  "lastname": "Ccc",
-	  "address": "123 Skyline Avenue",
-	  "city": "Salt Lake City",
-	  "state": "UT",
-	  "birthdate": "01/02/1994",
-	  "age": 25,
-	  "fanimageurl": "../../assets/images/robots/5849DA03-1FB5-497E-BEC5-E74AF67CB837.png",
-	  "teamname": "Real Salt Lake",
-	  "teamimageurl": "../../assets/images/teams/realsaltlake.gif",
-	  "posteams": ["Toronto FC", "Montreal Impact"],
-	  "negteams": ["Colorado Rapids", "Seattle Sounders FC", "Portland Timbers"]
-	}
   ]
 }

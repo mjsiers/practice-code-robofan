@@ -8,7 +8,20 @@ namespace RoboFan.Domain.Converters
 {
   public static class RoboFanConverter
   {
-    public static RoboFanViewModel Convert(Entities.RoboFan robofan)
+    public static List<RoboFanViewModel> ConvertList(List<Entities.RoboFan> listfans, string hostpath = null)
+    {
+      List<RoboFanViewModel> listmodels = new List<RoboFanViewModel>();
+
+      foreach (var fan in listfans)
+      {
+        var model = Convert(fan, hostpath);
+        listmodels.Add(model);
+      }
+
+      return listmodels;
+    }
+
+    public static RoboFanViewModel Convert(Entities.RoboFan robofan, string hostpath = null)
     {
       var model = new RoboFanViewModel();
       model.Id = robofan.Id;
@@ -19,7 +32,14 @@ namespace RoboFan.Domain.Converters
       model.State = robofan.State;
       model.TeamName = robofan.PrimaryTeam.Name;
       model.TeamImageUrl = robofan.PrimaryTeam.ImageUrl;
-      model.ImageUrl = RoboFanImageConverter.ImageUrl(robofan.RoboFanImage);
+      model.ImageUrl = RoboFanImageConverter.ImageUrl(robofan.RoboFanImage, hostpath);
+
+      // update the team image path if specified
+      if (!string.IsNullOrEmpty(hostpath))
+      {
+        var filename = System.IO.Path.GetFileName(model.TeamImageUrl);
+        model.TeamImageUrl = string.Format("{0}/images/teams/{1}", hostpath, filename);
+      }
 
       // default the view model birthdate and age values
       model.Age = GetAge(robofan.BirthDate, DateTime.Now);

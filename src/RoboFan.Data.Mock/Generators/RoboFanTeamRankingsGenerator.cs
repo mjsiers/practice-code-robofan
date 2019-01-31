@@ -10,8 +10,8 @@ namespace RoboFan.Data.Mock.Generators
   {
     public static List<RoboFanTeamRanking> GenerateTeamRankings(RoboFanEntity robofan, List<LeagueTeam> leagueTeams)
     {
-      const int maxposteams = 3;
-      const int maxnegteams = 5;
+      const int maxposteams = 2;
+      const int maxnegteams = 3;
       List<RoboFanTeamRanking> listRankings = new List<RoboFanTeamRanking>();
 
       // get a list of available team ids to use for fan rankings
@@ -35,7 +35,6 @@ namespace RoboFan.Data.Mock.Generators
         // create a new object to save the results int
         var ranking = new RoboFanTeamRanking();
         ranking.RobotFanId = robofan.Id;
-        ranking.RobotFan = robofan;
         ranking.Ranking = teamranking;
 
         // select a random index from the remaining teams and save in the object
