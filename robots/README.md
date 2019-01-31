@@ -1,4 +1,4 @@
-﻿# RoboFan
+﻿# RoboFan Web Application
 ## Robot Image Generation
 
 This python utility will generate some random robot images.  These static images
@@ -8,11 +8,11 @@ utility is available on [**GitHub**](https://github.com/e1ven/Robohash).
 
 When a new robot is generated in the RoboFan applcation, the new robot will have a 
 randomly selected robot image assigned to them.  The robot images for each fan are 
-loaded into the database and not served as a static resource.
+loaded into the database and not served as a static resources.
 
 ## Installation Procedure (using Anaconda Python)
-```conda create --name robots pip python=3.6```
-```conda activate robots```
+```conda create --name robots pip python=3.6```<br>
+```conda activate robots```<br>
 ```pip install -r requirements.txt```
 
 ## Generate Robot Images
